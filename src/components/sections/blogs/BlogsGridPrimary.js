@@ -4,9 +4,11 @@ import Nodata from "@/components/shared/no-data/Nodata";
 import Pagination from "@/components/shared/paginations/Pagination";
 import usePagination from "@/hooks/usePagination";
 import getAllBlogs from "@/libs/getAllBlogs";
+import { useLocale } from "@/hooks/useLocale";
 
 const BlogsGridPrimary = () => {
   const blogs = getAllBlogs();
+  const { t } = useLocale('blog');
   // get pagination details
   const {
     currentItems,
@@ -27,7 +29,7 @@ const BlogsGridPrimary = () => {
         <div className="row">
           {/* <!-- Blog Item --> */}
           {!currentItems?.length ? (
-            <Nodata text="No Blog!" />
+            <Nodata text={t('noPostsFound')} />
           ) : (
             currentItems?.map((blog, idx) => (
               <div key={idx} className="col-lg-4 col-sm-6 col-12">

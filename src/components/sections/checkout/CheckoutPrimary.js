@@ -1,17 +1,29 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
 "use client";
+
 import CheckoutProduct from "@/components/shared/checkout/CheckoutProduct";
 import Nodata from "@/components/shared/no-data/Nodata";
 import countTotalPrice from "@/libs/countTotalPrice";
 import getAllProducts from "@/libs/getAllProducts";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-const paymnetImage3 = "/img/icons/payment-3.png";
 import useSweetAlert from "@/hooks/useSweetAlert";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
+
+const paymnetImage3 = "/img/icons/payment-3.png";
+const COUNTRY_KEYS = [
+  "australia",
+  "canada",
+  "china",
+  "morocco",
+  "saudiArabia",
+  "unitedKingdom",
+  "unitedStates",
+];
 
 const CheckoutPrimary = () => {
   const [isPlaceOrder, setIsPlaceOrder] = useState(false);
@@ -23,29 +35,42 @@ const CheckoutPrimary = () => {
   const currentColor = searchParams.get("color");
   const currentSize = searchParams.get("size");
   const { cartProducts: products } = useCartContext();
-  const currentProduct = {
-    ...allProducts?.find(({ id }) => id === currentId),
-    quantity: currentQuantity,
-    color: currentColor,
-    size: currentSize,
-  };
+  const { locale, t } = useLocale('checkout');
+  const { t: tAlerts } = useLocale('alerts');
+  const { t: tButtons } = useLocale('buttons');
+  const { t: tAuth } = useLocale('auth');
+
+  const currentProduct = useMemo(
+    () => ({
+      ...allProducts?.find(({ id }) => id === currentId),
+      quantity: currentQuantity,
+      color: currentColor,
+      size: currentSize,
+    }),
+    [allProducts, currentColor, currentId, currentQuantity, currentSize]
+  );
 
   const isProducts = currentProduct?.title || products?.length ? true : false;
   const subtotal = countTotalPrice(
     currentId ? [{ ...currentProduct, quantity: currentQuantity }] : products
   );
   const shipping = 15;
-  const totalPrice = modifyAmount(subtotal + shipping);
-  // handle place order
+  const formattedSubtotal = formatCurrency(subtotal, locale);
+  const formattedShipping = formatCurrency(shipping, locale);
+  const formattedVat = formatCurrency(0, locale);
+  const formattedTotalPrice = formatCurrency(subtotal + shipping, locale);
+
   const handlePlaceOrder = () => {
-    creteAlert("error", "Sorry! App is in demo mode.");
+    creteAlert("error", tAlerts('demoMode'));
     setIsPlaceOrder(false);
   };
+
   useEffect(() => {
     if (isProducts) {
       setIsPlaceOrder(true);
     }
   }, [isProducts]);
+
   return (
     <div className="ltn__checkout-area mb-105">
       <div className="container">
@@ -55,13 +80,13 @@ const CheckoutPrimary = () => {
               {/* login */}
               <div className="ltn__checkout-single-content ltn__returning-customer-wrap">
                 <h5>
-                  Returning customer?{" "}
+                  {t('returningCustomer')}{" "}
                   <Link
                     className="ltn__secondary-color"
                     href="#ltn__returning-customer-login"
                     data-bs-toggle="collapse"
                   >
-                    Click here to login
+                    {t('returningCustomerCta')}
                   </Link>
                 </h5>
                 <div
@@ -69,7 +94,7 @@ const CheckoutPrimary = () => {
                   className="collapse ltn__checkout-single-content-info"
                 >
                   <div className="ltn_coupon-code-form ltn__form-box">
-                    <p>Please login your accont.</p>
+                    <p>{t('pleaseLoginAccount')}</p>
                     <form action="#">
                       <div className="row">
                         <div className="col-md-6">
@@ -77,7 +102,7 @@ const CheckoutPrimary = () => {
                             <input
                               type="text"
                               name="ltn__name"
-                              placeholder="Enter your name"
+                              placeholder={t('placeholders.name')}
                             />
                           </div>
                         </div>
@@ -86,19 +111,19 @@ const CheckoutPrimary = () => {
                             <input
                               type="email"
                               name="ltn__email"
-                              placeholder="Enter email address"
+                              placeholder={t('placeholders.email')}
                             />
                           </div>
                         </div>
                       </div>
                       <button className="btn theme-btn-1 btn-effect-1 text-uppercase">
-                        Login
+                        {tButtons('login')}
                       </button>
                       <label className="input-info-save mb-0">
-                        <input type="checkbox" name="agree" /> Remember me
+                        <input type="checkbox" name="agree" /> {tAuth('rememberMe')}
                       </label>
                       <p className="mt-30">
-                        <Link href="/register">Lost your password?</Link>
+                        <Link href="/register">{t('lostPassword')}</Link>
                       </p>
                     </form>
                   </div>
@@ -107,13 +132,13 @@ const CheckoutPrimary = () => {
               {/* coupon */}
               <div className="ltn__checkout-single-content ltn__coupon-code-wrap">
                 <h5>
-                  Have a coupon?{" "}
+                  {t('haveCoupon')}{" "}
                   <Link
                     className="ltn__secondary-color"
                     href="#ltn__coupon-code"
                     data-bs-toggle="collapse"
                   >
-                    Click here to enter your code
+                    {t('couponCodeCta')}
                   </Link>
                 </h5>
                 <div
@@ -121,15 +146,15 @@ const CheckoutPrimary = () => {
                   className="collapse ltn__checkout-single-content-info"
                 >
                   <div className="ltn__coupon-code-form">
-                    <p>If you have a coupon code, please apply it below.</p>
+                    <p>{t('couponCodeMessage')}</p>
                     <form action="#">
                       <input
                         type="text"
                         name="coupon-code"
-                        placeholder="Coupon code"
+                        placeholder={t('couponCodePlaceholder')}
                       />
                       <button className="btn theme-btn-2 btn-effect-2 text-uppercase">
-                        Apply Coupon
+                        {tButtons('applyCoupon')}
                       </button>
                     </form>
                   </div>
@@ -137,17 +162,17 @@ const CheckoutPrimary = () => {
               </div>
               {/* buyer info */}
               <div className="ltn__checkout-single-content mt-50">
-                <h4 className="title-2">Billing Details</h4>
+                <h4 className="title-2">{t('billingDetails')}</h4>
                 <div className="ltn__checkout-single-content-info">
                   <form action="#">
-                    <h6>Personal Information</h6>
+                    <h6>{t('personalInformation')}</h6>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="input-item input-item-name ltn__custom-icon">
                           <input
                             type="text"
                             name="ltn__name"
-                            placeholder="First name"
+                            placeholder={t('firstName')}
                           />
                         </div>
                       </div>
@@ -156,7 +181,7 @@ const CheckoutPrimary = () => {
                           <input
                             type="text"
                             name="ltn__lastname"
-                            placeholder="Last name"
+                            placeholder={t('lastName')}
                           />
                         </div>
                       </div>
@@ -165,7 +190,7 @@ const CheckoutPrimary = () => {
                           <input
                             type="email"
                             name="ltn__email"
-                            placeholder="email address"
+                            placeholder={t('emailAddress')}
                           />
                         </div>
                       </div>
@@ -174,7 +199,7 @@ const CheckoutPrimary = () => {
                           <input
                             type="text"
                             name="ltn__phone"
-                            placeholder="phone number"
+                            placeholder={t('phoneNumber')}
                           />
                         </div>
                       </div>
@@ -183,7 +208,7 @@ const CheckoutPrimary = () => {
                           <input
                             type="text"
                             name="ltn__company"
-                            placeholder="Company name (optional)"
+                            placeholder={t('companyName')}
                           />
                         </div>
                       </div>
@@ -191,36 +216,32 @@ const CheckoutPrimary = () => {
                         <div className="input-item input-item-website ltn__custom-icon">
                           <input
                             type="text"
-                            name="ltn__phone"
-                            placeholder="Company address (optional)"
+                            name="ltn__companyAddress"
+                            placeholder={t('companyAddress')}
                           />
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-lg-4 col-md-6">
-                        <h6>Country</h6>
+                        <h6>{t('country')}</h6>
                         <div className="input-item">
                           <select className="nice-select">
-                            <option>Select Country</option>
-                            <option>Australia</option>
-                            <option>Canada</option>
-                            <option>China</option>
-                            <option>Morocco</option>
-                            <option>Saudi Arabia</option>
-                            <option>United Kingdom (UK)</option>
-                            <option>United States (US)</option>
+                            <option>{t('selectCountry')}</option>
+                            {COUNTRY_KEYS.map((country) => (
+                              <option key={country}>{t(`countries.${country}`)}</option>
+                            ))}
                           </select>
                         </div>
                       </div>
                       <div className="col-lg-12 col-md-12">
-                        <h6>Address</h6>
+                        <h6>{t('address')}</h6>
                         <div className="row">
                           <div className="col-md-6">
                             <div className="input-item">
                               <input
                                 type="text"
-                                placeholder="House number and street name"
+                                placeholder={t('houseNumberAndStreet')}
                               />
                             </div>
                           </div>
@@ -228,42 +249,41 @@ const CheckoutPrimary = () => {
                             <div className="input-item">
                               <input
                                 type="text"
-                                placeholder="Apartment, suite, unit etc. (optional)"
+                                placeholder={t('apartmentOptional')}
                               />
                             </div>
                           </div>
                         </div>
                       </div>
                       <div className="col-lg-4 col-md-6">
-                        <h6>Town / City</h6>
+                        <h6>{t('townCity')}</h6>
                         <div className="input-item">
-                          <input type="text" placeholder="Şehir" />
+                          <input type="text" placeholder={t('city')} />
                         </div>
                       </div>
                       <div className="col-lg-4 col-md-6">
-                        <h6>State </h6>
+                        <h6>{t('state')}</h6>
                         <div className="input-item">
-                          <input type="text" placeholder="State" />
+                          <input type="text" placeholder={t('state')} />
                         </div>
                       </div>
                       <div className="col-lg-4 col-md-6">
-                        <h6>Zip</h6>
+                        <h6>{t('zip')}</h6>
                         <div className="input-item">
-                          <input type="text" placeholder="Zip" />
+                          <input type="text" placeholder={t('zip')} />
                         </div>
                       </div>
                     </div>
                     <p>
                       <label className="input-info-save mb-0">
-                        <input type="checkbox" name="agree" /> Create an
-                        account?
+                        <input type="checkbox" name="agree" /> {t('createAccount')}
                       </label>
                     </p>
-                    <h6>Order Notes (optional)</h6>
+                    <h6>{t('orderNotes')}</h6>
                     <div className="input-item input-item-textarea ltn__custom-icon">
                       <textarea
                         name="ltn__message"
-                        placeholder="Notes about your order, e.g. special notes for delivery."
+                        placeholder={t('orderNotesPlaceholder')}
                       ></textarea>
                     </div>
                   </form>
@@ -274,7 +294,7 @@ const CheckoutPrimary = () => {
           {/* payment methods */}
           <div className="col-lg-6">
             <div className="ltn__checkout-payment-method mt-50">
-              <h4 className="title-2">Payment Method</h4>
+              <h4 className="title-2">{t('paymentMethod')}</h4>
 
               <div id="checkoutAccordion" className="accordion">
                 {/* <!-- card --> */}
@@ -285,7 +305,7 @@ const CheckoutPrimary = () => {
                     data-bs-target="#chechoutCollapseOne"
                     aria-expanded="false"
                   >
-                    Check payments
+                    {t('checkPayments')}
                   </h5>
                   <div
                     id="chechoutCollapseOne"
@@ -294,8 +314,11 @@ const CheckoutPrimary = () => {
                   >
                     <div className="card-body">
                       <p>
-                        Please send a check to Store Name, Store Street, Store
-                        Town, Store State / County, Store Postcode.
+                        {t('checkPaymentsDescription', {
+                          storeName: 'Store Name',
+                          storeAddress:
+                            'Store Street, Store Town, Store State / County, Store Postcode',
+                        })}
                       </p>
                     </div>
                   </div>
@@ -308,10 +331,10 @@ const CheckoutPrimary = () => {
                     data-bs-target="#chechoutCollapseTwo"
                     aria-expanded="true"
                   >
-                    Cash on delivery{" "}
+                    {t('cashOnDelivery')}{" "}
                     <Image
                       src="/img/icons/cash.png"
-                      alt="#"
+                      alt={t('cashOnDelivery')}
                       width={131}
                       height={110}
                     />
@@ -322,7 +345,7 @@ const CheckoutPrimary = () => {
                     data-bs-parent="#checkoutAccordion"
                   >
                     <div className="card-body">
-                      <p>Pay with cash upon delivery.</p>
+                      <p>{t('cashOnDeliveryDescription')}</p>
                     </div>
                   </div>
                 </div>
@@ -334,10 +357,10 @@ const CheckoutPrimary = () => {
                     data-bs-target="#chechoutCollapseThree"
                     aria-expanded="false"
                   >
-                    ApplePay{" "}
+                    {t('applePay')}{" "}
                     <Image
                       src="/img/icons/applepay.png"
-                      alt="#"
+                      alt={t('applePay')}
                       width={131}
                       height={110}
                     />
@@ -348,7 +371,7 @@ const CheckoutPrimary = () => {
                     data-bs-parent="#checkoutAccordion"
                   >
                     <div className="card-body">
-                      <p>Apple Pay is the modern way to pay.</p>
+                      <p>{t('applePayDescription')}</p>
                     </div>
                   </div>
                 </div>
@@ -360,13 +383,13 @@ const CheckoutPrimary = () => {
                     data-bs-target="#chechoutCollapseFour"
                     aria-expanded="false"
                   >
-                    PayPal{" "}
+                    {t('paypal')}{" "}
                     <Image
                       src={paymnetImage3}
                       width={319}
                       height={110}
                       style={{ maxWidth: "131px" }}
-                      alt="#"
+                      alt={t('paypal')}
                     />
                   </h5>
                   <div
@@ -375,21 +398,14 @@ const CheckoutPrimary = () => {
                     data-bs-parent="#checkoutAccordion"
                   >
                     <div className="card-body">
-                      <p>
-                        Pay via PayPal; you can pay with your credit card if you
-                        don’t have a PayPal account.
-                      </p>
+                      <p>{t('paypalDescription')}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="ltn__payment-note mt-30 mb-30">
-                <p>
-                  Your personal data will be used to process your order, support
-                  your experience throughout this website, and for other
-                  purposes described in our privacy policy.
-                </p>
+                <p>{t('privacyPolicyMessage')}</p>
               </div>
               <button
                 onClick={handlePlaceOrder}
@@ -397,17 +413,17 @@ const CheckoutPrimary = () => {
                 type="submit"
                 disabled={isPlaceOrder ? false : true}
               >
-                Place order
+                {t('placeOrderButton')}
               </button>
             </div>
           </div>
           {/* product to buy */}
           <div className="col-lg-6">
             {!isProducts ? (
-              <Nodata text={"No Product!"} />
+              <Nodata text={t('noProduct')} />
             ) : (
               <div className="shoping-cart-total mt-50">
-                <h4 className="title-2">Cart Totals</h4>
+                <h4 className="title-2">{t('cartTotals')}</h4>
                 <table className="table">
                   <tbody>
                     {currentProduct?.title ? (
@@ -419,19 +435,23 @@ const CheckoutPrimary = () => {
                     )}
 
                     <tr>
-                      <td>Shipping and Handing</td>
-                      <td>${modifyAmount(shipping)}</td>
+                      <td>{t('cartSubtotal')}</td>
+                      <td>{formattedSubtotal}</td>
                     </tr>
                     <tr>
-                      <td>Vat</td>
-                      <td>$00.00</td>
+                      <td>{t('shippingHandling')}</td>
+                      <td>{formattedShipping}</td>
+                    </tr>
+                    <tr>
+                      <td>{t('vat')}</td>
+                      <td>{formattedVat}</td>
                     </tr>
                     <tr>
                       <td>
-                        <strong>Order Total</strong>
+                        <strong>{t('orderTotal')}</strong>
                       </td>
                       <td>
-                        <strong>${totalPrice}</strong>
+                        <strong>{formattedTotalPrice}</strong>
                       </td>
                     </tr>
                   </tbody>

@@ -7,15 +7,16 @@ import useSweetAlert from "@/hooks/useSweetAlert";
 import { useLocale } from "@/hooks/useLocale";
 import addItemsToLocalstorage from "@/libs/addItemsToLocalstorage";
 import countTotalPrice from "@/libs/countTotalPrice";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { formatCurrency } from "@/i18n/formatters";
 
 const CartPrimary = () => {
   const { cartProducts: currentProducts, setCartProducts } = useCartContext();
   const creteAlert = useSweetAlert();
-  const { t } = useLocale('cart');
+  const { t, locale } = useLocale('cart');
+  const { t: tAlerts } = useLocale('alerts');
   const cartProducts = currentProducts;
   // stats
   const [updateProducts, setUpdateProducts] = useState(cartProducts);
@@ -24,14 +25,17 @@ const CartPrimary = () => {
   const [isClient, setIsisClient] = useState(false);
   const subTotalPrice = countTotalPrice(cartProducts);
   const vat = subTotalPrice ? 15 : 0;
-  const totalPrice = modifyAmount(subTotalPrice + vat);
+  const formattedSubtotal = formatCurrency(subTotalPrice, locale);
+  const formattedShipping = formatCurrency(vat, locale);
+  const formattedVat = formatCurrency(0, locale);
+  const formattedTotal = formatCurrency(subTotalPrice + vat, locale);
   const isCartProduct = cartProducts?.length || false;
 
   // update cart
   const handleUpdateCart = () => {
     addItemsToLocalstorage("cart", [...updateProducts]);
     setCartProducts([...updateProducts]);
-    creteAlert("success", "Success! Cart updated.");
+    creteAlert("success", tAlerts('cartUpdated'));
     setIsUpdate(false);
   };
   useEffect(() => {
@@ -108,22 +112,22 @@ const CartPrimary = () => {
                     <tbody>
                       <tr>
                         <td>{t('subtotal')}</td>
-                        <td>${modifyAmount(subTotalPrice)}</td>
+                        <td>{formattedSubtotal}</td>
                       </tr>
                       <tr>
                         <td>{t('shippingHandling')}</td>
-                        <td>${modifyAmount(vat)}</td>
+                        <td>{formattedShipping}</td>
                       </tr>
                       <tr>
                         <td>{t('vat')}</td>
-                        <td>$00.00</td>
+                        <td>{formattedVat}</td>
                       </tr>
                       <tr>
                         <td>
                           <strong>{t('orderTotal')}</strong>
                         </td>
                         <td>
-                          <strong>${totalPrice}</strong>
+                          <strong>{formattedTotal}</strong>
                         </td>
                       </tr>
                     </tbody>

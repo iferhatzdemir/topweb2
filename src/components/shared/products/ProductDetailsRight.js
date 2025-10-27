@@ -1,16 +1,17 @@
 "use client";
 import controlModal from "@/libs/controlModal";
 import countDiscount from "@/libs/countDiscount";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import { useWishlistContext } from "@/providers/WshlistContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useCommonContext } from "@/providers/CommonContext";
 import moment from "moment";
 import countCommentLength from "@/libs/countCommentLength";
 import modifyNumber from "@/libs/modifyNumber";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 const ProductDetailsRight = ({ product }) => {
   // destructure current product
   const { id, title, price, reviews, disc, size, color } = product;
@@ -30,8 +31,14 @@ const ProductDetailsRight = ({ product }) => {
   // varriables
   const { type } = value ? value : {};
   const { netPrice } = countDiscount(price, disc);
-  const netPriceModified = modifyAmount(netPrice);
-  const priceModified = modifyAmount(price);
+  const { locale, t } = useLocale('products');
+  const pricing = useMemo(
+    () => ({
+      net: formatCurrency(netPrice, locale),
+      base: formatCurrency(price, locale),
+    }),
+    [netPrice, price, locale]
+  );
   const reviewsLength = countCommentLength(reviews);
   const purchaseDateMilliseconds = moment(purchaseDate)?.valueOf();
   const productToSave = {
@@ -99,7 +106,7 @@ const ProductDetailsRight = ({ product }) => {
       <h3>{title}</h3>
       {/* price */}
       <div className="product-price text-nowrap">
-        <span>${netPriceModified}</span> <del>${priceModified}</del>
+        <span>{pricing.net}</span> <del>{pricing.base}</del>
       </div>
       {/* description */}
 
@@ -149,11 +156,12 @@ const ProductDetailsRight = ({ product }) => {
               }}
               href="#"
               className="theme-btn-1 btn btn-effect-1"
-              title="Sepete Ekle"
+              title={t('addToCart')}
               data-bs-toggle="modal"
               data-bs-target="#add_to_cart_modal"
             >
-              <i className="fas fa-shopping-cart"></i> <span>ADD TO CART</span>
+              <i className="fas fa-shopping-cart"></i>{' '}
+              <span>{t('addToCart')}</span>
             </Link>
           </li>
         </ul>
@@ -169,11 +177,12 @@ const ProductDetailsRight = ({ product }) => {
               }}
               href="#"
               className=""
-              title="Favorilere Ekle"
+              title={t('addToWishlist')}
               data-bs-toggle="modal"
               data-bs-target="#liton_wishlist_modal"
             >
-              <i className="far fa-heart"></i> <span>Add to Wishlist</span>
+              <i className="far fa-heart"></i>{' '}
+              <span>{t('addToWishlist')}</span>
             </Link>
           </li>{" "}
           <li>

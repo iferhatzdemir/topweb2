@@ -1,24 +1,32 @@
 "use client";
 import countDiscount from "@/libs/countDiscount";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import { useProductContext } from "@/providers/ProductContext";
 import { useWishlistContext } from "@/providers/WshlistContext";
 import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency, formatNumber } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 
 const ProductCard = ({ product }) => {
   const { title, price, disc, image, id, status, run, model, type, color } =
     product;
   const { setCurrentProduct } = useProductContext();
   const { netPrice } = countDiscount(price, disc);
-  const netPriceModified = modifyAmount(netPrice);
-  const priceModified = modifyAmount(price);
   const { addProductToCart } = useCartContext();
   const { addProductToWishlist } = useWishlistContext();
-  const { t } = useLocale('products');
+  const { t, locale } = useLocale('products');
+
+  const pricing = useMemo(() => ({
+    net: formatCurrency(netPrice, locale),
+    base: formatCurrency(price, locale),
+  }), [netPrice, price, locale]);
+
+  const formattedRun = useMemo(
+    () => formatNumber(run, locale, { maximumFractionDigits: 0 }),
+    [run, locale]
+  );
 
   return (
     <div
@@ -97,7 +105,7 @@ const ProductCard = ({ product }) => {
           <Link href={`/products/${id}`}>{title}</Link>
         </h2>
         <div className="product-price">
-          <span>${netPriceModified}</span> <del>${priceModified}</del>
+          <span>{pricing.net}</span> <del>{pricing.base}</del>
         </div>
         <div className="product-info-brief">
           <ul>
@@ -111,7 +119,7 @@ const ProductCard = ({ product }) => {
             </li>
             <li>
               <i className="fas fa-road"></i>
-              {run}kph
+              {t('speed', { value: formattedRun })}
             </li>
           </ul>
         </div>

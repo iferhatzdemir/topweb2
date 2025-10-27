@@ -67,6 +67,7 @@
 | Ara Toplam | Subtotal | |
 | Beden | Size | Giysi bedeni için |
 | Beden Tablosu | Size Chart | |
+| Beni Hatırla | Remember Me | Giriş formu seçeneği |
 | Değerlendirme | Review | Ürün incelemesi |
 | E-posta | Email | Alternatif: E-posta Adresi |
 | Favori Listesi | Wishlist | |
@@ -82,6 +83,7 @@
 | Gizlilik Politikası | Privacy Policy | |
 | Güvenli Ödeme | Secure Payment | |
 | Hesabım | My Account | |
+| Hesap Oluştur | Create Account | Buton metni: "Hesap Oluştur" |
 | Hızlı Görünüm | Quick View | Ürün detayı modal için |
 | İndirim | Discount | |
 | İndirimde | On Sale | Ürün durumu |

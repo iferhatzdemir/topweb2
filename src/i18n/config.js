@@ -5,12 +5,26 @@
 
 export const i18n = {
   defaultLocale: 'tr',
-  locales: ['tr'], // Sadece Türkçe
-  localeDetection: false, // Dil algılama kapalı
+  locales: ['tr', 'en'],
+  localeDetection: true,
 };
 
 export const localeNames = {
   tr: 'Türkçe',
+  en: 'English',
+};
+
+export const localeMetadata = {
+  tr: {
+    label: localeNames.tr,
+    intlLocale: 'tr-TR',
+    currency: 'TRY',
+  },
+  en: {
+    label: localeNames.en,
+    intlLocale: 'en-US',
+    currency: 'TRY',
+  },
 };
 
 // Namespace tanımları - lazy loading için

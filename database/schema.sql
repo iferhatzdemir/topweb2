@@ -163,6 +163,86 @@ CREATE TABLE `product_variants` (
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Stok Lokasyonları (Depo/Mağaza)
+CREATE TABLE `inventory_locations` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(50) NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
+  `location_type` ENUM('warehouse', 'store', 'dropship') NOT NULL DEFAULT 'warehouse',
+  `address` TEXT NULL,
+  `city` VARCHAR(100) NULL,
+  `state` VARCHAR(100) NULL,
+  `country_code` VARCHAR(2) NOT NULL DEFAULT 'TR',
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC),
+  INDEX `idx_location_type` (`location_type` ASC),
+  INDEX `idx_is_active` (`is_active` ASC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Ürün Bazlı Stok Seviyeleri
+CREATE TABLE `product_inventory` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `variant_id` INT UNSIGNED NULL,
+  `variant_key` INT UNSIGNED GENERATED ALWAYS AS (IFNULL(`variant_id`, 0)) STORED,
+  `location_id` INT UNSIGNED NOT NULL,
+  `on_hand` INT NOT NULL DEFAULT 0,
+  `reserved` INT NOT NULL DEFAULT 0,
+  `safety_stock` INT NOT NULL DEFAULT 0,
+  `reorder_point` INT NOT NULL DEFAULT 0,
+  `incoming` INT NOT NULL DEFAULT 0,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `uq_inventory_product_location_variant` (`product_id` ASC, `location_id` ASC, `variant_key` ASC),
+  INDEX `idx_product_location` (`product_id` ASC, `location_id` ASC),
+  INDEX `idx_reorder_point` (`reorder_point` ASC),
+  CONSTRAINT `fk_inventory_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `products` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_inventory_variant`
+    FOREIGN KEY (`variant_id`)
+    REFERENCES `product_variants` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_inventory_location`
+    FOREIGN KEY (`location_id`)
+    REFERENCES `inventory_locations` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Stok Hareketleri
+CREATE TABLE `inventory_movements` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `inventory_id` BIGINT UNSIGNED NOT NULL,
+  `movement_type` ENUM('sale', 'return', 'adjustment', 'transfer_in', 'transfer_out', 'purchase_order') NOT NULL,
+  `reference_type` VARCHAR(50) NULL,
+  `reference_id` INT UNSIGNED NULL,
+  `quantity_change` INT NOT NULL,
+  `reason` VARCHAR(255) NULL,
+  `created_by` INT UNSIGNED NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `idx_inventory_id` (`inventory_id` ASC),
+  INDEX `idx_movement_type` (`movement_type` ASC),
+  INDEX `idx_reference` (`reference_type` ASC, `reference_id` ASC),
+  CONSTRAINT `fk_movements_inventory`
+    FOREIGN KEY (`inventory_id`)
+    REFERENCES `product_inventory` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_movements_user`
+    FOREIGN KEY (`created_by`)
+    REFERENCES `users` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `product_variant_attributes` (
   `variant_id` INT UNSIGNED NOT NULL,
   `attribute_value_id` INT UNSIGNED NOT NULL,
@@ -207,6 +287,88 @@ CREATE TABLE `product_media` (
     FOREIGN KEY (`variant_id`)
     REFERENCES `product_variants` (`id`)
     ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Fiyat Listeleri ve Tarihçesi
+CREATE TABLE `price_books` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `currency` VARCHAR(3) NOT NULL DEFAULT 'TRY',
+  `description` TEXT NULL,
+  `is_default` TINYINT(1) NOT NULL DEFAULT 0,
+  `priority` INT NOT NULL DEFAULT 0,
+  `starts_at` TIMESTAMP NULL DEFAULT NULL,
+  `ends_at` TIMESTAMP NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `uq_price_books_name` (`name` ASC),
+  INDEX `idx_is_default` (`is_default` ASC),
+  INDEX `idx_schedule` (`starts_at` ASC, `ends_at` ASC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `product_prices` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` INT UNSIGNED NOT NULL,
+  `variant_id` INT UNSIGNED NULL,
+  `price_book_id` INT UNSIGNED NOT NULL,
+  `base_price` DECIMAL(10,2) NOT NULL,
+  `discount_type` ENUM('fixed', 'percentage') NULL,
+  `discount_value` DECIMAL(10,2) NULL,
+  `final_price` DECIMAL(10,2) GENERATED ALWAYS AS (
+    CASE
+      WHEN discount_type = 'fixed' THEN base_price - discount_value
+      WHEN discount_type = 'percentage' THEN base_price - (base_price * discount_value / 100)
+      ELSE base_price
+    END
+  ) STORED,
+  `starts_at` TIMESTAMP NULL DEFAULT NULL,
+  `ends_at` TIMESTAMP NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `uq_price_variant_book` (`variant_id` ASC, `price_book_id` ASC, `starts_at` ASC),
+  INDEX `idx_product_book` (`product_id` ASC, `price_book_id` ASC),
+  INDEX `idx_active_window` (`starts_at` ASC, `ends_at` ASC),
+  CONSTRAINT `fk_prices_product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `products` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_prices_variant`
+    FOREIGN KEY (`variant_id`)
+    REFERENCES `product_variants` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_prices_book`
+    FOREIGN KEY (`price_book_id`)
+    REFERENCES `price_books` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `price_history` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_price_id` BIGINT UNSIGNED NOT NULL,
+  `changed_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `changed_by` INT UNSIGNED NULL,
+  `old_base_price` DECIMAL(10,2) NULL,
+  `new_base_price` DECIMAL(10,2) NULL,
+  `old_discount_type` ENUM('fixed', 'percentage') NULL,
+  `new_discount_type` ENUM('fixed', 'percentage') NULL,
+  `old_discount_value` DECIMAL(10,2) NULL,
+  `new_discount_value` DECIMAL(10,2) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `idx_product_price_id` (`product_price_id` ASC),
+  CONSTRAINT `fk_price_history_price`
+    FOREIGN KEY (`product_price_id`)
+    REFERENCES `product_prices` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_price_history_user`
+    FOREIGN KEY (`changed_by`)
+    REFERENCES `users` (`id`)
+    ON DELETE SET NULL
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -557,6 +719,26 @@ CREATE TABLE `page_blocks` (
     REFERENCES `pages` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `seo_meta` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `entity_type` ENUM('page', 'product', 'category', 'blog_post', 'campaign') NOT NULL,
+  `entity_id` INT UNSIGNED NOT NULL,
+  `locale` VARCHAR(5) NOT NULL DEFAULT 'tr-TR',
+  `meta_title` VARCHAR(255) NULL,
+  `meta_description` TEXT NULL,
+  `meta_keywords` VARCHAR(255) NULL,
+  `structured_data` JSON NULL,
+  `canonical_url` VARCHAR(500) NULL,
+  `og_image` VARCHAR(500) NULL,
+  `og_type` VARCHAR(50) NULL,
+  `twitter_card` VARCHAR(50) NULL,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `uq_seo_entity_locale` (`entity_type` ASC, `entity_id` ASC, `locale` ASC),
+  INDEX `idx_entity_type` (`entity_type` ASC),
+  INDEX `idx_locale` (`locale` ASC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- SEO ve Site Ayarları
