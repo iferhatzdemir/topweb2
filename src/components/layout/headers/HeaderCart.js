@@ -4,16 +4,23 @@ import ButtonSecondary from "@/components/shared/buttons/ButtonSecondary";
 import Nodata from "@/components/shared/no-data/Nodata";
 import countDiscount from "@/libs/countDiscount";
 import countTotalPrice from "@/libs/countTotalPrice";
-import modifyAmount from "@/libs/modifyAmount";
-
 import { useCartContext } from "@/providers/CartContext";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 const HeaderCart = () => {
   const { cartProducts, deleteProductFromCart } = useCartContext();
+  const { t, locale } = useLocale('cart');
   const totalProduct = cartProducts?.length;
   const totalPrice = countTotalPrice(cartProducts);
+  const formattedTotalPrice = formatCurrency(totalPrice, locale);
+  const freeShippingMessage = useMemo(
+    () => t('freeShippingOver', { amount: formatCurrency(100, locale) }),
+    [locale, t]
+  );
   return (
     <div
       id="ltn__utilize-cart-menu"
@@ -21,16 +28,17 @@ const HeaderCart = () => {
     >
       <div className="ltn__utilize-menu-inner ltn__scrollbar">
         <div className="ltn__utilize-menu-head">
-          <span className="ltn__utilize-menu-title">Sepet</span>
+          <span className="ltn__utilize-menu-title">{t('title')}</span>
           <button className="ltn__utilize-close">×</button>
         </div>
         <div className="mini-cart-product-area ltn__scrollbar">
           {!totalProduct ? (
-            <Nodata text={"Empty Cart!"} />
+            <Nodata text={t('emptyCart')} />
           ) : (
             cartProducts?.map(
               ({ id, title, image, price, quantity, disc }, idx) => {
                 const { netPrice } = countDiscount(price, disc);
+                const formattedUnitPrice = formatCurrency(netPrice, locale);
                 return (
                   <div key={idx} className="mini-cart-item clearfix">
                     <div className="mini-cart-img">
@@ -57,7 +65,10 @@ const HeaderCart = () => {
                         </Link>
                       </h6>
                       <span className="mini-cart-quantity">
-                        {quantity} x ${modifyAmount(netPrice)}
+                        {t('unitPriceWithQuantity', {
+                          count: quantity,
+                          price: formattedUnitPrice,
+                        })}
                       </span>
                     </div>
                   </div>
@@ -69,14 +80,14 @@ const HeaderCart = () => {
         <div className="mini-cart-footer">
           <div className="mini-cart-sub-total">
             <h5>
-              Subtotal: <span>${totalPrice.toFixed(2)}</span>
+              {t('subtotal')}: <span>{formattedTotalPrice}</span>
             </h5>
           </div>
           <div className="btn-wrapper">
-            <ButtonPrimary text={"View Cart"} path={"/cart"} />
-            <ButtonSecondary text={"Checkout"} path={"/checkout"} />
+            <ButtonPrimary text={t('viewCart')} path={'/cart'} />
+            <ButtonSecondary text={t('proceedToCheckout')} path={'/checkout'} />
           </div>
-          <p>Free Shipping on All Orders Over $100!</p>
+          <p>{freeShippingMessage}</p>
         </div>
       </div>
     </div>

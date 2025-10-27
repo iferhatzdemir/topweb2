@@ -1,14 +1,19 @@
 import countDiscount from "@/libs/countDiscount";
-import modifyAmount from "@/libs/modifyAmount";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 
 const ProductCard2 = ({ product }) => {
   const { title, price, disc, image, id } = product;
   const { netPrice } = countDiscount(price, disc);
-  const netPriceModified = modifyAmount(netPrice);
-  const priceModified = modifyAmount(price);
+  const { locale } = useLocale('products');
+
+  const pricing = useMemo(() => ({
+    net: formatCurrency(netPrice, locale),
+    base: formatCurrency(price, locale),
+  }), [netPrice, price, locale]);
 
   return (
     <div className="ltn__small-product-item">
@@ -59,7 +64,7 @@ const ProductCard2 = ({ product }) => {
           </Link>
         </h2>
         <div className="product-price">
-          <span>${netPriceModified}</span> <del>${priceModified}</del>
+          <span>{pricing.net}</span> <del>{pricing.base}</del>
         </div>
       </div>
     </div>

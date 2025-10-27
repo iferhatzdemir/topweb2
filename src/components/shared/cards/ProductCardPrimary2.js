@@ -1,13 +1,15 @@
 "use client";
 
 import countDiscount from "@/libs/countDiscount";
-import modifyAmount from "@/libs/modifyAmount";
 import sliceText from "@/libs/sliceText";
 import { useCartContext } from "@/providers/CartContext";
 import { useProductContext } from "@/providers/ProductContext";
 import { useWishlistContext } from "@/providers/WshlistContext";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 const ProductCardPrimary2 = ({ product, isShowDisc }) => {
   const {
@@ -25,10 +27,18 @@ const ProductCardPrimary2 = ({ product, isShowDisc }) => {
   } = product;
   const { setCurrentProduct } = useProductContext();
   const { netPrice } = countDiscount(price, disc);
-  const netPriceModified = modifyAmount(netPrice);
-  const priceModified = modifyAmount(price);
   const { addProductToCart } = useCartContext();
   const { addProductToWishlist } = useWishlistContext();
+  const { locale, t } = useLocale('products');
+
+  const pricing = useMemo(() => ({
+    net: formatCurrency(netPrice, locale),
+    base: formatCurrency(price, locale),
+  }), [netPrice, price, locale]);
+
+  const quickViewLabel = t('quickView');
+  const addToCartLabel = t('addToCart');
+  const addToWishlistLabel = t('addToWishlist');
   return (
     <div
       className="ltn__product-item ltn__product-item-3"
@@ -88,8 +98,8 @@ const ProductCardPrimary2 = ({ product, isShowDisc }) => {
           </ul>
         </div>
         <div className="product-price">
-          <span>${netPriceModified}</span>
-          <del>${priceModified}</del>
+          <span>{pricing.net}</span>
+          <del>{pricing.base}</del>
         </div>
 
         <div className="product-brief">
@@ -100,7 +110,7 @@ const ProductCardPrimary2 = ({ product, isShowDisc }) => {
             <li>
               <Link
                 href="#"
-                title="Hızlı Görünüm"
+                title={quickViewLabel}
                 data-bs-toggle="modal"
                 data-bs-target="#quick_view_modal"
               >
@@ -118,7 +128,7 @@ const ProductCardPrimary2 = ({ product, isShowDisc }) => {
                   });
                 }}
                 href="#"
-                title="Sepete Ekle"
+                title={addToCartLabel}
                 data-bs-toggle="modal"
                 data-bs-target="#add_to_cart_modal"
               >
@@ -132,7 +142,7 @@ const ProductCardPrimary2 = ({ product, isShowDisc }) => {
                   addProductToWishlist({ ...product, quantity: 1 });
                 }}
                 href="#"
-                title="Favorilere Ekle"
+                title={addToWishlistLabel}
                 data-bs-toggle="modal"
                 data-bs-target="#liton_wishlist_modal"
               >

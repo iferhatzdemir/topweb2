@@ -4,7 +4,6 @@ import CheckoutProduct from "@/components/shared/checkout/CheckoutProduct";
 import Nodata from "@/components/shared/no-data/Nodata";
 import countTotalPrice from "@/libs/countTotalPrice";
 import getAllProducts from "@/libs/getAllProducts";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -12,6 +11,8 @@ const paymnetImage3 = "/img/icons/payment-3.png";
 import useSweetAlert from "@/hooks/useSweetAlert";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 
 const CheckoutPrimary = () => {
   const [isPlaceOrder, setIsPlaceOrder] = useState(false);
@@ -23,6 +24,7 @@ const CheckoutPrimary = () => {
   const currentColor = searchParams.get("color");
   const currentSize = searchParams.get("size");
   const { cartProducts: products } = useCartContext();
+  const { locale, t } = useLocale('checkout');
   const currentProduct = {
     ...allProducts?.find(({ id }) => id === currentId),
     quantity: currentQuantity,
@@ -35,7 +37,10 @@ const CheckoutPrimary = () => {
     currentId ? [{ ...currentProduct, quantity: currentQuantity }] : products
   );
   const shipping = 15;
-  const totalPrice = modifyAmount(subtotal + shipping);
+  const formattedSubtotal = formatCurrency(subtotal, locale);
+  const formattedShipping = formatCurrency(shipping, locale);
+  const formattedVat = formatCurrency(0, locale);
+  const formattedTotalPrice = formatCurrency(subtotal + shipping, locale);
   // handle place order
   const handlePlaceOrder = () => {
     creteAlert("error", "Sorry! App is in demo mode.");
@@ -385,11 +390,7 @@ const CheckoutPrimary = () => {
               </div>
 
               <div className="ltn__payment-note mt-30 mb-30">
-                <p>
-                  Your personal data will be used to process your order, support
-                  your experience throughout this website, and for other
-                  purposes described in our privacy policy.
-                </p>
+                <p>{t('privacyPolicyMessage')}</p>
               </div>
               <button
                 onClick={handlePlaceOrder}
@@ -397,17 +398,17 @@ const CheckoutPrimary = () => {
                 type="submit"
                 disabled={isPlaceOrder ? false : true}
               >
-                Place order
+                {t('placeOrderButton')}
               </button>
             </div>
           </div>
           {/* product to buy */}
           <div className="col-lg-6">
             {!isProducts ? (
-              <Nodata text={"No Product!"} />
+              <Nodata text={t('noProduct')} />
             ) : (
               <div className="shoping-cart-total mt-50">
-                <h4 className="title-2">Cart Totals</h4>
+                <h4 className="title-2">{t('cartTotals')}</h4>
                 <table className="table">
                   <tbody>
                     {currentProduct?.title ? (
@@ -419,19 +420,23 @@ const CheckoutPrimary = () => {
                     )}
 
                     <tr>
-                      <td>Shipping and Handing</td>
-                      <td>${modifyAmount(shipping)}</td>
+                      <td>{t('cartSubtotal')}</td>
+                      <td>{formattedSubtotal}</td>
                     </tr>
                     <tr>
-                      <td>Vat</td>
-                      <td>$00.00</td>
+                      <td>{t('shippingHandling')}</td>
+                      <td>{formattedShipping}</td>
+                    </tr>
+                    <tr>
+                      <td>{t('vat')}</td>
+                      <td>{formattedVat}</td>
                     </tr>
                     <tr>
                       <td>
-                        <strong>Order Total</strong>
+                        <strong>{t('orderTotal')}</strong>
                       </td>
                       <td>
-                        <strong>${totalPrice}</strong>
+                        <strong>{formattedTotalPrice}</strong>
                       </td>
                     </tr>
                   </tbody>

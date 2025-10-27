@@ -5,6 +5,7 @@
   "paymentMethod": "Payment Method",
   "cartTotals": "Cart Totals",
   "orderSummary": "Order Summary",
+  "noProduct": "No products in your cart!",
 
   "returningCustomer": "Returning customer?",
   "returningCustomerMessage": "Login to your account.",

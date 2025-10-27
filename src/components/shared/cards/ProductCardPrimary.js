@@ -1,12 +1,13 @@
 "use client";
 import countDiscount from "@/libs/countDiscount";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import { useProductContext } from "@/providers/ProductContext";
 import { useWishlistContext } from "@/providers/WshlistContext";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 
 const ProductCardPrimary = ({ product, isShowDisc }) => {
   const { title, price, disc, image, id, status, color } = product
@@ -14,8 +15,14 @@ const ProductCardPrimary = ({ product, isShowDisc }) => {
     : {};
   const { setCurrentProduct } = useProductContext();
   const { netPrice } = countDiscount(price, disc);
-  const netPriceModified = modifyAmount(netPrice);
-  const priceModified = modifyAmount(price);
+  const { locale, t } = useLocale('products');
+  const pricing = useMemo(
+    () => ({
+      net: formatCurrency(netPrice, locale),
+      base: formatCurrency(price, locale),
+    }),
+    [netPrice, price, locale]
+  );
   const { addProductToCart } = useCartContext();
   const { addProductToWishlist } = useWishlistContext();
 
@@ -54,7 +61,7 @@ const ProductCardPrimary = ({ product, isShowDisc }) => {
             <li>
               <Link
                 href="#"
-                title="Hızlı Görünüm"
+                title={t('quickView')}
                 data-bs-toggle="modal"
                 data-bs-target="#quick_view_modal"
               >
@@ -72,7 +79,7 @@ const ProductCardPrimary = ({ product, isShowDisc }) => {
                   });
                 }}
                 href="#"
-                title="Sepete Ekle"
+                title={t('addToCart')}
                 data-bs-toggle="modal"
                 data-bs-target="#add_to_cart_modal"
               >
@@ -86,7 +93,7 @@ const ProductCardPrimary = ({ product, isShowDisc }) => {
                   addProductToWishlist({ ...product, quantity: 1 });
                 }}
                 href="#"
-                title="Favorilere Ekle"
+                title={t('addToWishlist')}
                 data-bs-toggle="modal"
                 data-bs-target="#liton_wishlist_modal"
               >
@@ -130,7 +137,7 @@ const ProductCardPrimary = ({ product, isShowDisc }) => {
           <Link href={`/products/${id}`}>{title}</Link>
         </h2>
         <div className="product-price">
-          <span>${netPriceModified}</span> <del>${priceModified}</del>
+          <span>{pricing.net}</span> <del>{pricing.base}</del>
         </div>
       </div>
     </div>

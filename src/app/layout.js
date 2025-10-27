@@ -5,6 +5,8 @@ import "./globals.css";
 import "@/assets/css/responsive.css";
 import Script from "next/script";
 import { Suspense } from "react";
+import { headers } from "next/headers";
+import { i18n } from "@/i18n/config";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -26,9 +28,12 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const headerList = headers();
+  const activeLocale = headerList.get("x-locale") || i18n.defaultLocale;
+
   return (
     <html
-      lang="tr"
+      lang={activeLocale}
       suppressHydrationWarning={true}
       className={`${poppins.variable} ${inter.variable}`}
     >

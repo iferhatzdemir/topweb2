@@ -1,21 +1,10 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "@/i18n/client";
+import React from "react";
+import { useLocale } from "@/hooks/useLocale";
 
 const FooterCustomerCare = () => {
-  const [currentLocale, setCurrentLocale] = useState('tr');
-  const { t } = useTranslation(currentLocale, 'footer');
-
-  useEffect(() => {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-    const locale = getCookie('i18next') || 'tr';
-    setCurrentLocale(locale);
-  }, []);
+  const { t } = useLocale('footer');
 
   return (
     <div className="col-xl-2 col-md-6 col-sm-6 col-12">

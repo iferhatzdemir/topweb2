@@ -1,15 +1,21 @@
 import countTotalPrice from "@/libs/countTotalPrice";
-import modifyAmount from "@/libs/modifyAmount";
 import { useCartContext } from "@/providers/CartContext";
 import { useHeaderContex } from "@/providers/HeaderContex";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 
 const HeaderCartShow = () => {
   const { headerStyle } = useHeaderContex();
   const { cartProducts } = useCartContext();
+  const { locale } = useLocale('cart');
   const totalProduct = cartProducts?.length;
   const totalPrice = countTotalPrice(cartProducts);
+  const formattedTotalPrice = useMemo(
+    () => formatCurrency(totalPrice, locale),
+    [totalPrice, locale]
+  );
   return (
     <>
       {totalProduct || totalProduct === 0 ? (
@@ -26,7 +32,7 @@ const HeaderCartShow = () => {
               <h6>
                 <span>Your Cart</span>{" "}
                 <span className="ltn__secondary-color">
-                  ${modifyAmount(totalPrice)}
+                  {formattedTotalPrice}
                 </span>
               </h6>
             ) : (

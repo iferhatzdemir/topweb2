@@ -1,24 +1,13 @@
 "use client";
 import { useFooterContex } from "@/providers/FooterContext";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "@/i18n/client";
+import React from "react";
+import { useLocale } from "@/hooks/useLocale";
 
 const Copyright2 = () => {
   const { footerBg } = useFooterContex();
-  const [currentLocale, setCurrentLocale] = useState('tr');
-  const { t } = useTranslation(currentLocale, 'footer');
+  const { t, locale } = useLocale('footer');
   const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-    const locale = getCookie('i18next') || 'tr';
-    setCurrentLocale(locale);
-  }, []);
 
   return (
     <div

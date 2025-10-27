@@ -5,6 +5,7 @@
   "paymentMethod": "Ödeme Yöntemi",
   "cartTotals": "Sepet Toplamı",
   "orderSummary": "Sipariş Özeti",
+  "noProduct": "Sepette ürün bulunmuyor!",
 
   "returningCustomer": "Müşteri misiniz?",
   "returningCustomerMessage": "Hesabınıza giriş yapın.",
