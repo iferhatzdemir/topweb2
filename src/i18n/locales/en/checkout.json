@@ -8,11 +8,17 @@
   "noProduct": "No products in your cart!",
 
   "returningCustomer": "Returning customer?",
+  "returningCustomerCta": "Click here to login",
   "returningCustomerMessage": "Login to your account.",
   "haveCoupon": "Have a coupon?",
+  "couponCodeCta": "Click here to enter your code",
   "haveCouponMessage": "Enter your coupon code here.",
   "pleaseLoginAccount": "Please login to your account.",
   "couponCodeMessage": "If you have a coupon code, please apply it below.",
+  "placeholders": {
+    "name": "Enter your name",
+    "email": "Enter email address"
+  },
 
   "firstName": "First Name",
   "lastName": "Last Name",
@@ -22,6 +28,15 @@
   "companyAddress": "Company Address (optional)",
   "country": "Country",
   "selectCountry": "Select Country",
+  "countries": {
+    "australia": "Australia",
+    "canada": "Canada",
+    "china": "China",
+    "morocco": "Morocco",
+    "saudiArabia": "Saudi Arabia",
+    "unitedKingdom": "United Kingdom (UK)",
+    "unitedStates": "United States (US)"
+  },
   "address": "Address",
   "houseNumberAndStreet": "House number and street name",
   "apartmentOptional": "Apartment, suite, unit etc. (optional)",

@@ -8,11 +8,17 @@
   "noProduct": "Sepette ürün bulunmuyor!",
 
   "returningCustomer": "Müşteri misiniz?",
+  "returningCustomerCta": "Giriş yapmak için tıklayın",
   "returningCustomerMessage": "Hesabınıza giriş yapın.",
   "haveCoupon": "Kupon kodunuz var mı?",
+  "couponCodeCta": "Kodunuzu girmek için tıklayın",
   "haveCouponMessage": "Kupon kodunuzu buraya girin.",
   "pleaseLoginAccount": "Lütfen hesabınıza giriş yapın.",
   "couponCodeMessage": "Kupon kodunuz varsa, lütfen aşağıya uygulayın.",
+  "placeholders": {
+    "name": "Adınızı girin",
+    "email": "E-posta adresinizi girin"
+  },
 
   "firstName": "Ad",
   "lastName": "Soyad",
@@ -22,6 +28,15 @@
   "companyAddress": "Şirket Adresi (opsiyonel)",
   "country": "Ülke",
   "selectCountry": "Ülke Seçin",
+  "countries": {
+    "australia": "Avustralya",
+    "canada": "Kanada",
+    "china": "Çin",
+    "morocco": "Fas",
+    "saudiArabia": "Suudi Arabistan",
+    "unitedKingdom": "Birleşik Krallık (UK)",
+    "unitedStates": "Amerika Birleşik Devletleri (US)"
+  },
   "address": "Adres",
   "houseNumberAndStreet": "Mahalle, sokak ve kapı numarası",
   "apartmentOptional": "Daire, kat, vb. (opsiyonel)",

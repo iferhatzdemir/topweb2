@@ -16,6 +16,7 @@ const CartPrimary = () => {
   const { cartProducts: currentProducts, setCartProducts } = useCartContext();
   const creteAlert = useSweetAlert();
   const { t, locale } = useLocale('cart');
+  const { t: tAlerts } = useLocale('alerts');
   const cartProducts = currentProducts;
   // stats
   const [updateProducts, setUpdateProducts] = useState(cartProducts);
@@ -34,7 +35,7 @@ const CartPrimary = () => {
   const handleUpdateCart = () => {
     addItemsToLocalstorage("cart", [...updateProducts]);
     setCartProducts([...updateProducts]);
-    creteAlert("success", "Success! Cart updated.");
+    creteAlert("success", tAlerts('cartUpdated'));
     setIsUpdate(false);
   };
   useEffect(() => {
