@@ -1,0 +1,22 @@
+{
+  "title": "Alışveriş Sepeti",
+  "emptyCart": "Sepetiniz boş!",
+  "continueShopping": "Alışverişe Devam Et",
+  "updateCart": "Sepeti Güncelle",
+  "clearCart": "Sepeti Temizle",
+  "subtotal": "Ara Toplam",
+  "cartTotals": "Sepet Toplamı",
+  "shippingHandling": "Kargo ve Teslimat",
+  "shipping": "Kargo",
+  "tax": "KDV",
+  "vat": "KDV",
+  "orderTotal": "Sipariş Toplamı",
+  "total": "Toplam",
+  "proceedToCheckout": "Ödemeye Geç",
+  "itemsInCart": "{{count}} ürün sepetinizde",
+  "removeItem": "Ürünü Kaldır",
+  "couponCode": "Kupon kodu",
+  "applyCoupon": "Kuponu Uygula",
+  "estimateShipping": "Kargo Tahmini",
+  "freeShippingOver": "{{amount}} üzeri ücretsiz kargo"
+}

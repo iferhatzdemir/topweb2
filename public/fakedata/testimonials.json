@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Jacob William",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Founder, Browni Co.",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 2,
+    "name": "Ethan James",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Admin",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 3,
+    "name": "John Alex",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Founder, Browni Co.",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 4,
+    "name": "Liam Mason",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Officer",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 5,
+    "name": "Noah Alexander",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Professor",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 6,
+    "name": "Browne Boost",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Founder, Browni Co.",
+    "desc": "Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 7,
+    "name": "Jacob William",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Manager",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  ullamco laboris nisi ut aliquip ex ea commodo."
+  },
+  {
+    "id": 8,
+    "name": "Ethan James",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Admin",
+    "desc": "Quidem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  ullamco laboris nisi ut aliquip ex ea."
+  },
+  {
+    "id": 9,
+    "name": "Noah Alexander",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Professor",
+    "desc": "Dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  ullamco nisi ut aliquip ex ea commodo."
+  },
+  {
+    "id": 10,
+    "name": "Liam Mason",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Officer",
+    "desc": "Amet Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud  nisi ut aliquip ex ea commodo."
+  },
+  {
+    "id": 11,
+    "name": "Jacob William",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Founder, Browni Co.",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  },
+  {
+    "id": 12,
+    "name": "Ethan James",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Admin",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  },
+  {
+    "id": 13,
+    "name": "John Alex",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Founder, Browni Co.",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  },
+  {
+    "id": 14,
+    "name": "Liam Mason",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Officer",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  },
+  {
+    "id": 15,
+    "name": "Noah Alexander",
+    "image": null,
+    "imageSmall": null,
+    "desig": "Professor",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  }
+]

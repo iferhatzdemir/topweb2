@@ -1,0 +1,62 @@
+{
+  "title": "Blog",
+  "subtitle": "News and Articles",
+  "readMore": "Read More",
+  "sharePost": "Share Post",
+  "categories": "Categories",
+  "tags": "Tags",
+  "author": "Author",
+  "publishedOn": "Published On",
+  "updatedOn": "Updated On",
+  "readingTime": "{{minutes}} min read",
+  "relatedPosts": "Related Posts",
+  "popularPosts": "Popular Posts",
+  "recentPosts": "Recent Posts",
+  "noPostsFound": "No posts found",
+  "searchPlaceholder": "Search blog posts...",
+
+  "comments": {
+    "title": "Comments",
+    "count": "{{count}} Comments",
+    "noComments": "No comments yet",
+    "leaveComment": "Leave a Comment",
+    "name": "Your Name",
+    "email": "Your Email",
+    "website": "Your Website (Optional)",
+    "message": "Your Message",
+    "submit": "Submit Comment",
+    "submitting": "Submitting...",
+    "success": "Your comment has been submitted successfully!",
+    "saveInfo": "Save my information for next time I comment"
+  },
+
+  "sidebar": {
+    "search": "Search",
+    "categories": "Categories",
+    "recentPosts": "Recent Posts",
+    "popularPosts": "Popular Posts",
+    "tags": "Tags",
+    "archive": "Archive",
+    "newsletter": "Subscribe to Newsletter"
+  },
+
+  "social": {
+    "share": "Share",
+    "facebook": "Share on Facebook",
+    "twitter": "Share on Twitter",
+    "linkedin": "Share on LinkedIn",
+    "pinterest": "Share on Pinterest",
+    "whatsapp": "Share on WhatsApp"
+  },
+
+  "grid": {
+    "title": "Blog Posts",
+    "showingResults": "Showing {{count}} posts"
+  },
+
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}}"
+  }
+}

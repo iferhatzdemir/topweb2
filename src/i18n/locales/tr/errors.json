@@ -1,0 +1,20 @@
+{
+  "404": {
+    "title": "404 - Sayfa Bulunamadı",
+    "heading": "Oops! Sayfa Bulunamadı",
+    "message": "Aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    "button": "Ana Sayfaya Dön"
+  },
+  "500": {
+    "title": "500 - Sunucu Hatası",
+    "heading": "Bir Şeyler Ters Gitti",
+    "message": "Sunucu tarafında bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    "button": "Sayfayı Yenile"
+  },
+  "error": {
+    "title": "Hata",
+    "heading": "Bir Hata Oluştu",
+    "message": "Beklenmedik bir hata oluştu. Lütfen tekrar deneyin.",
+    "button": "Tekrar Dene"
+  }
+}

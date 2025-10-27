@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Browse all",
+    "image": "/img/icons/icon-img/category-1.png",
+    "shortTitle": "Browse all",
+    "path": "/shop",
+    "path2": "/shop"
+  },
+  {
+    "title": "Vegetables",
+    "image": "/img/icons/icon-img/category-2.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=vegetables",
+    "path2": "/shop"
+  },
+  {
+    "title": "Fruits",
+    "image": "/img/icons/icon-img/category-3.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=fruits",
+    "path2": "/shop"
+  },
+  {
+    "title": "Meat",
+    "image": "/img/icons/icon-img/category-4.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=meat",
+    "path2": "/shop"
+  },
+  {
+    "title": "Fish",
+    "image": "/img/icons/icon-img/category-5.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=fish",
+    "path2": "/shop"
+  },
+  {
+    "title": "Fried",
+    "image": "/img/icons/icon-img/category-3.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=fried",
+    "path2": "/shop"
+  },
+  {
+    "title": "Others",
+    "image": "/img/icons/icon-img/category-2.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=others",
+    "path2": "/shop"
+  },
+  {
+    "title": "Meat",
+    "image": "/img/icons/icon-img/category-4.png",
+    "shortTitle": "Browse all",
+    "path": "/shop?category=meat",
+    "path2": "/shop"
+  }
+]

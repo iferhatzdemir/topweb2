@@ -1,0 +1,50 @@
+{
+  "topBar": {
+    "address": "15/A, Nest Tower, NYC",
+    "email": "info@webmail.com",
+    "languages": {
+      "label": "Dil",
+      "english": "İngilizce",
+      "arabic": "Arapça",
+      "bengali": "Bengalce",
+      "chinese": "Çince",
+      "french": "Fransızca",
+      "hindi": "Hintçe",
+      "turkish": "Türkçe"
+    },
+    "currency": {
+      "label": "Para Birimi",
+      "usd": "USD",
+      "eur": "EUR",
+      "gbp": "GBP",
+      "try": "TRY"
+    }
+  },
+  "search": {
+    "placeholder": "Ürün ara...",
+    "button": "Ara",
+    "noResults": "Sonuç bulunamadı",
+    "searching": "Aranıyor..."
+  },
+  "cart": {
+    "title": "Sepetim",
+    "emptyCart": "Sepetiniz boş",
+    "itemCount": "{{count}} ürün",
+    "subtotal": "Ara Toplam",
+    "viewCart": "Sepeti Görüntüle",
+    "checkout": "Ödemeye Geç"
+  },
+  "account": {
+    "myAccount": "Hesabım",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "logout": "Çıkış Yap",
+    "orders": "Siparişlerim",
+    "wishlist": "Favori Listem",
+    "settings": "Ayarlar"
+  },
+  "mobileMenu": {
+    "menu": "Menü",
+    "close": "Kapat"
+  }
+}

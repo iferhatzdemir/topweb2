@@ -1,0 +1,22 @@
+{
+  "emptyCart": "Sepetiniz Boş!",
+  "emptyCartDescription": "Sepetinizde hiç ürün bulunmuyor. Alışverişe başlamak için ürünlerimize göz atın.",
+  "noProduct": "Ürün Bulunamadı!",
+  "noProductDescription": "Aradığınız kriterlere uygun ürün bulunamadı. Lütfen farklı filtreler deneyin.",
+  "emptyWishlist": "Favori Listeniz Boş!",
+  "emptyWishlistDescription": "Henüz favori listenize ürün eklemediniz.",
+  "noOrders": "Siparişiniz Yok!",
+  "noOrdersDescription": "Henüz hiç sipariş vermediniz.",
+  "noReviews": "Henüz Değerlendirme Yok",
+  "noReviewsDescription": "Bu ürün için henüz değerlendirme yapılmamış. İlk değerlendirmeyi siz yapın!",
+  "noComments": "Henüz Yorum Yok",
+  "noCommentsDescription": "Bu içerik için henüz yorum yapılmamış.",
+  "noResults": "Sonuç Bulunamadı",
+  "noResultsDescription": "Aramanızla eşleşen sonuç bulunamadı.",
+  "noNotifications": "Bildirim Yok",
+  "noNotificationsDescription": "Şu anda yeni bildiriminiz bulunmuyor.",
+  "noAddress": "Kayıtlı Adres Yok",
+  "noAddressDescription": "Henüz kayıtlı adresiniz bulunmuyor. Lütfen bir adres ekleyin.",
+  "noPaymentMethod": "Kayıtlı Ödeme Yöntemi Yok",
+  "noPaymentMethodDescription": "Henüz kayıtlı ödeme yönteminiz bulunmuyor."
+}

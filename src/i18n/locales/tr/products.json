@@ -1,0 +1,107 @@
+{
+  "addToCart": "Sepete Ekle",
+  "addToWishlist": "Favorilere Ekle",
+  "quickView": "Hızlı Görünüm",
+  "compareProduct": "Ürünü Karşılaştır",
+  "price": "Fiyat",
+  "quantity": "Adet",
+  "availability": "Stok Durumu",
+  "inStock": "Stokta Var",
+  "outOfStock": "Stokta Yok",
+  "sku": "Ürün Kodu",
+  "category": "Kategori",
+  "categories": "Kategoriler",
+  "tags": "Etiketler",
+  "description": "Açıklama",
+  "reviews": "Yorumlar",
+  "comments": "Yorumlar",
+  "relatedProducts": "İlgili Ürünler",
+  "newArrival": "Yeni Gelenler",
+  "bestSeller": "Çok Satanlar",
+  "onSale": "İndirimde",
+  "featured": "Öne Çıkanlar",
+  "discount": "İndirim",
+  "freeShipping": "Ücretsiz Kargo",
+  "organic": "Organik",
+  "fresh": "Taze",
+
+  "share": "Paylaş",
+  "guaranteedSafeCheckout": "Güvenli Ödeme Garantisi",
+
+  "tabs": {
+    "description": "Açıklama",
+    "reviews": "Değerlendirmeler",
+    "comments": "Yorumlar",
+    "shippingPolicy": "Kargo Politikası",
+    "sizeChart": "Beden Tablosu"
+  },
+
+  "customerReviews": "Müşteri Değerlendirmeleri",
+  "reviewsCount": "({{count}} Değerlendirme)",
+  "commentsCount": "Yorumlar ({{count}})",
+  "leaveReply": "Yorum Bırakın",
+  "addReview": "Değerlendirme Ekle",
+  "yourRatings": "Değerlendirmeniz:",
+
+  "sorting": {
+    "defaultSorting": "Varsayılan Sıralama",
+    "sortByPopularity": "Popülerliğe göre sırala",
+    "sortByNewArrivals": "Yeni gelenlere göre sırala",
+    "sortByPriceLowToHigh": "Fiyata göre sırala: düşükten yükseğe",
+    "sortByPriceHighToLow": "Fiyata göre sırala: yüksekten düşüğe"
+  },
+
+  "showing": "{{firstItem}}-{{lastItem}} arası gösteriliyor (toplam {{totalItems}} sonuç)",
+
+  "shippingPolicy": {
+    "title": "Mağazamız için kargo politikası",
+    "delivery": "1-2 iş günü (Genellikle gün sonuna kadar)",
+    "moneyBack": "30 gün para iade garantisi",
+    "support": "7/24 canlı destek",
+    "info1": "odio dignissim qui blandit praesent",
+    "info2": "luptatum zzril delenit augue duis dolore",
+    "info3": "te feugait nulla facilisi."
+  },
+
+  "sizeChart": {
+    "size": "BEDEN",
+    "uk": "UK",
+    "europe": "AVRUPA",
+    "usaCanada": "ABD/KANADA",
+    "ausNz": "AVUSTRALYA / YENİ ZELANDA"
+  },
+
+  "colors": {
+    "title": "Renk",
+    "black": "Siyah",
+    "white": "Beyaz",
+    "red": "Kırmızı",
+    "yellow": "Sarı",
+    "green": "Yeşil",
+    "blue": "Mavi",
+    "navy": "Lacivert"
+  },
+
+  "sizes": {
+    "title": "Beden",
+    "s": "S",
+    "m": "M",
+    "l": "L",
+    "xl": "XL",
+    "xxl": "XXL"
+  },
+
+  "placeholders": {
+    "typeComment": "Yorumunuzu yazın...",
+    "typeName": "Adınızı yazın...",
+    "typeEmail": "E-posta adresinizi yazın...",
+    "typeWebsite": "Web sitenizi yazın...",
+    "typeReview": "Değerlendirmenizi yazın...",
+    "addYourPrice": "Fiyat Ekleyin",
+    "selectDate": "Tarih Seçin"
+  },
+
+  "labels": {
+    "saveInfo": "Bir dahaki sefere yorum yapmak için adımı, e-postamı ve web sitemi bu tarayıcıya kaydet."
+  }
+}

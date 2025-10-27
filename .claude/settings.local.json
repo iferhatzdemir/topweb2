@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(find src/i18n/locales/tr -name \"*.json\" -exec sh -c 'echo \"\"=== {} ===\"\" && node -e \"\"try { require(\\\"\"./{}\\\"\" ); console.log(\\\"\"✅ Valid JSON\\\"\"); } catch(e) { console.log(\\\"\"❌ Invalid:\\\"\", e.message); }\"\"' ;)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(find src/i18n/locales/tr -name \"*.json\" -exec echo \"=== {} ===\" ; -exec head -5 {} ;)",
+      "Bash(find:*)",
+      "Bash(npm run dev:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

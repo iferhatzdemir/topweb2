@@ -1,0 +1,65 @@
+{
+  "about": {
+    "title": "About Us",
+    "description": "We provide the best shopping experience with organic and fresh products for a healthy lifestyle."
+  },
+  "company": {
+    "title": "Company",
+    "about": "About",
+    "blog": "Blog",
+    "allProducts": "All Products",
+    "locationsMap": "Locations Map",
+    "faq": "FAQ",
+    "contactUs": "Contact Us"
+  },
+  "customerCare": {
+    "title": "Customer Care",
+    "login": "Login",
+    "myAccount": "My Account",
+    "wishList": "Wish List",
+    "orderTracking": "Order Tracking",
+    "faq": "FAQ",
+    "contactUs": "Contact Us"
+  },
+  "services": {
+    "title": "Services",
+    "customization": "Customization",
+    "support": "Support",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "warranty": "Warranty"
+  },
+  "newsletter": {
+    "title": "Subscribe to Our Newsletter",
+    "subtitle": "Get the latest news and special offers",
+    "placeholder": "Your email address",
+    "button": "Subscribe",
+    "success": "Successfully subscribed!",
+    "error": "An error occurred during subscription."
+  },
+  "copyright": {
+    "text": "© {{year}} Broccoli. All rights reserved.",
+    "allRightsReserved": "All rights reserved.",
+    "designedBy": "Designed by:",
+    "poweredBy": "Powered by:"
+  },
+  "social": {
+    "title": "Follow Us",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "linkedin": "LinkedIn",
+    "pinterest": "Pinterest"
+  },
+  "payment": {
+    "title": "Payment Methods",
+    "securePayment": "Secure Payment"
+  },
+  "contact": {
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Working Hours"
+  }
+}

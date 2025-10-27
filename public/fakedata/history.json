@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Started Journey",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur ad ipisic ing elit, sed do eiusmod tempor.",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": false,
+    "year": 1900
+  },
+  {
+    "title": "Get Rewards",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur ad ipisic ing elit, sed do eiusmod tempor.",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": false,
+    "year": 1950
+  },
+  {
+    "title": "Top Winner",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur ad ipisic ing elit, sed do eiusmod tempor.",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": false,
+    "year": 1994
+  },
+  {
+    "title": "Get Rewards",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur ad ipisic ing elit, sed do eiusmod tempor.",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": false,
+    "year": 2010
+  },
+  {
+    "title": "Get Rewards",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur ad ipisic ing elit, sed do eiusmod tempor.",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": false,
+    "year": 2010
+  },
+  {
+    "title": "We Started Our Journey",
+    "subTitle": "// Our History",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": true,
+    "year": 1900
+  },
+  {
+    "title": "It Was An Sweet Journey Time",
+    "subTitle": "// Get rewards",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": true,
+    "year": 1940
+  },
+  {
+    "title": "It Was An Sweet Journey Time",
+    "subTitle": "// Get rewards",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": true,
+    "year": 2000
+  },
+  {
+    "title": "It Was An Sweet Journey Time",
+    "subTitle": "/ Get rewards",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": true,
+    "year": 2010
+  },
+  {
+    "title": "It Was An Sweet Journey Time",
+    "subTitle": "// Get rewards",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "desc2": "Lorem ipsum dolor sit amet, consectetur adipis icing elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "image1",
+    "isMain": true,
+    "year": 2020
+  }
+]

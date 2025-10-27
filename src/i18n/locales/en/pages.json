@@ -1,0 +1,135 @@
+{
+  "about": {
+    "title": "About Us",
+    "subtitle": "Get to Know Us",
+    "ourStory": "Our Story",
+    "ourMission": "Our Mission",
+    "ourVision": "Our Vision",
+    "ourValues": "Our Values",
+    "whyChooseUs": "Why Choose Us?",
+    "meetOurTeam": "Meet Our Team"
+  },
+
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in Touch with Us",
+    "getInTouch": "Contact Us",
+    "sendMessage": "Send Message",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "yourPhone": "Your Phone",
+    "subject": "Subject",
+    "message": "Your Message",
+    "sendButton": "Send Message",
+    "sending": "Sending...",
+    "success": "Your message has been sent successfully!",
+    "error": "An error occurred while sending the message.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Working Hours",
+    "openingHours": "Monday - Friday: 09:00 AM - 06:00 PM",
+    "weekendHours": "Saturday - Sunday: 10:00 AM - 04:00 PM"
+  },
+
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "We're Here to Help",
+    "searchPlaceholder": "Search questions...",
+    "noResults": "No results found",
+    "stillHaveQuestions": "Still have questions?",
+    "contactUs": "Contact us",
+    "categories": {
+      "general": "General",
+      "shipping": "Shipping",
+      "returns": "Returns & Exchanges",
+      "payment": "Payment",
+      "account": "Account",
+      "products": "Products"
+    }
+  },
+
+  "locations": {
+    "title": "Our Stores",
+    "subtitle": "Visit Us",
+    "findStore": "Find Store",
+    "viewOnMap": "View on Map",
+    "getDirections": "Get Directions",
+    "storeHours": "Store Hours",
+    "contactStore": "Contact Store"
+  },
+
+  "orderTracking": {
+    "title": "Order Tracking",
+    "subtitle": "Track Your Order",
+    "orderNumber": "Order Number",
+    "emailAddress": "Email Address",
+    "trackButton": "Track",
+    "tracking": "Tracking...",
+    "orderStatus": "Order Status",
+    "orderDate": "Order Date",
+    "estimatedDelivery": "Estimated Delivery",
+    "shippingAddress": "Shipping Address",
+    "statuses": {
+      "pending": "Pending Confirmation",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
+  },
+
+  "history": {
+    "title": "Our History",
+    "subtitle": "Our Journey",
+    "ourJourney": "Our Journey",
+    "milestones": "Milestones"
+  },
+
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Meet Our Amazing People",
+    "viewProfile": "View Profile",
+    "position": "Position",
+    "email": "Email",
+    "phone": "Phone"
+  },
+
+  "services": {
+    "title": "Our Services",
+    "subtitle": "What We Offer",
+    "learnMore": "Learn More",
+    "viewDetails": "View Details",
+    "requestService": "Request Service"
+  },
+
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Our Work",
+    "viewProject": "View Project",
+    "allProjects": "All Projects",
+    "filterByCategory": "Filter by Category"
+  },
+
+  "comingSoon": {
+    "title": "Coming Soon",
+    "subtitle": "We're working on something amazing!",
+    "launchingIn": "Launching In",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "notifyMe": "Notify Me",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe"
+  },
+
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "subtitle": "Oops! The page you're looking for doesn't exist",
+    "message": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "backToHome": "Back to Home",
+    "searchSite": "Search Site"
+  }
+}

@@ -1,0 +1,113 @@
+[
+  {
+    "province": "Alabama",
+    "locations": [
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      }
+    ]
+  },
+  {
+    "province": "Boston",
+    "locations": [
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      }
+    ]
+  },
+  {
+    "province": "New York",
+    "locations": [
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      },
+      {
+        "proviceDetails": "Boston, New York",
+        "address": "5816 S. Coulter Street Amarillo,",
+        "proviceCode": "TX 79119",
+        "contact": "0123456789",
+        "path": "/contact",
+        "website": "#"
+      }
+    ]
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "title": "Blog",
+  "subtitle": "Haberler ve Makaleler",
+  "readMore": "Devamını Oku",
+  "sharePost": "Yazıyı Paylaş",
+  "categories": "Kategoriler",
+  "tags": "Etiketler",
+  "author": "Yazar",
+  "publishedOn": "Yayınlanma Tarihi",
+  "updatedOn": "Güncelleme Tarihi",
+  "readingTime": "{{minutes}} dk okuma",
+  "relatedPosts": "İlgili Yazılar",
+  "popularPosts": "Popüler Yazılar",
+  "recentPosts": "Son Yazılar",
+  "noPostsFound": "Yazı bulunamadı",
+  "searchPlaceholder": "Blog yazılarında ara...",
+
+  "comments": {
+    "title": "Yorumlar",
+    "count": "{{count}} Yorum",
+    "noComments": "Henüz yorum yapılmamış",
+    "leaveComment": "Yorum Yapın",
+    "name": "Adınız",
+    "email": "E-posta Adresiniz",
+    "website": "Web Siteniz (Opsiyonel)",
+    "message": "Mesajınız",
+    "submit": "Yorum Gönder",
+    "submitting": "Gönderiliyor...",
+    "success": "Yorumunuz başarıyla gönderildi!",
+    "saveInfo": "Bir dahaki sefere yorum yapmak için bilgilerimi kaydet"
+  },
+
+  "sidebar": {
+    "search": "Ara",
+    "categories": "Kategoriler",
+    "recentPosts": "Son Yazılar",
+    "popularPosts": "Popüler Yazılar",
+    "tags": "Etiketler",
+    "archive": "Arşiv",
+    "newsletter": "Bültene Abone Ol"
+  },
+
+  "social": {
+    "share": "Paylaş",
+    "facebook": "Facebook'ta Paylaş",
+    "twitter": "Twitter'da Paylaş",
+    "linkedin": "LinkedIn'de Paylaş",
+    "pinterest": "Pinterest'te Paylaş",
+    "whatsapp": "WhatsApp'ta Paylaş"
+  },
+
+  "grid": {
+    "title": "Blog Yazıları",
+    "showingResults": "{{count}} yazı gösteriliyor"
+  },
+
+  "pagination": {
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "page": "Sayfa {{page}}"
+  }
+}

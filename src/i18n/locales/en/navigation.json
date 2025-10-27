@@ -1,0 +1,21 @@
+{
+  "home": "Home",
+  "about": "About",
+  "services": "Services",
+  "products": "Products",
+  "shop": "Shop",
+  "blog": "Blog",
+  "contact": "Contact",
+  "cart": "Cart",
+  "wishlist": "Wishlist",
+  "account": "Account",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "team": "Team",
+  "portfolio": "Portfolio",
+  "faq": "FAQ",
+  "locations": "Locations",
+  "history": "History",
+  "checkout": "Checkout"
+}

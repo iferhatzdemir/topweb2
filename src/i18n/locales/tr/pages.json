@@ -1,0 +1,135 @@
+{
+  "about": {
+    "title": "Hakkımızda",
+    "subtitle": "Bizi Tanıyın",
+    "ourStory": "Hikayemiz",
+    "ourMission": "Misyonumuz",
+    "ourVision": "Vizyonumuz",
+    "ourValues": "Değerlerimiz",
+    "whyChooseUs": "Neden Bizi Seçmelisiniz?",
+    "meetOurTeam": "Ekibimizle Tanışın"
+  },
+
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Bizimle İletişime Geçin",
+    "getInTouch": "Bize Ulaşın",
+    "sendMessage": "Mesaj Gönderin",
+    "yourName": "Adınız",
+    "yourEmail": "E-posta Adresiniz",
+    "yourPhone": "Telefon Numaranız",
+    "subject": "Konu",
+    "message": "Mesajınız",
+    "sendButton": "Mesajı Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Mesajınız başarıyla gönderildi!",
+    "error": "Mesaj gönderilirken bir hata oluştu.",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "workingHours": "Çalışma Saatleri",
+    "openingHours": "Pazartesi - Cuma: 09:00 - 18:00",
+    "weekendHours": "Cumartesi - Pazar: 10:00 - 16:00"
+  },
+
+  "faq": {
+    "title": "Sık Sorulan Sorular",
+    "subtitle": "Size Yardımcı Olmak İçin Buradayız",
+    "searchPlaceholder": "Soru ara...",
+    "noResults": "Sonuç bulunamadı",
+    "stillHaveQuestions": "Hala sorunuz mu var?",
+    "contactUs": "Bizimle iletişime geçin",
+    "categories": {
+      "general": "Genel",
+      "shipping": "Kargo",
+      "returns": "İade & Değişim",
+      "payment": "Ödeme",
+      "account": "Hesap",
+      "products": "Ürünler"
+    }
+  },
+
+  "locations": {
+    "title": "Mağazalarımız",
+    "subtitle": "Bizi Ziyaret Edin",
+    "findStore": "Mağaza Bul",
+    "viewOnMap": "Haritada Görüntüle",
+    "getDirections": "Yol Tarifi Al",
+    "storeHours": "Çalışma Saatleri",
+    "contactStore": "Mağazayla İletişime Geç"
+  },
+
+  "orderTracking": {
+    "title": "Sipariş Takibi",
+    "subtitle": "Siparişinizi Takip Edin",
+    "orderNumber": "Sipariş Numarası",
+    "emailAddress": "E-posta Adresi",
+    "trackButton": "Takip Et",
+    "tracking": "Takip Ediliyor...",
+    "orderStatus": "Sipariş Durumu",
+    "orderDate": "Sipariş Tarihi",
+    "estimatedDelivery": "Tahmini Teslimat",
+    "shippingAddress": "Teslimat Adresi",
+    "statuses": {
+      "pending": "Onay Bekliyor",
+      "confirmed": "Onaylandı",
+      "processing": "Hazırlanıyor",
+      "shipped": "Kargoya Verildi",
+      "delivered": "Teslim Edildi",
+      "cancelled": "İptal Edildi"
+    }
+  },
+
+  "history": {
+    "title": "Tarihçemiz",
+    "subtitle": "Yolculuğumuz",
+    "ourJourney": "Serüvenimiz",
+    "milestones": "Kilometre Taşları"
+  },
+
+  "team": {
+    "title": "Ekibimiz",
+    "subtitle": "Harika İnsanlarımızla Tanışın",
+    "viewProfile": "Profili Görüntüle",
+    "position": "Pozisyon",
+    "email": "E-posta",
+    "phone": "Telefon"
+  },
+
+  "services": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Size Sunduklarımız",
+    "learnMore": "Daha Fazla Bilgi",
+    "viewDetails": "Detayları Görüntüle",
+    "requestService": "Hizmet Talebi"
+  },
+
+  "portfolio": {
+    "title": "Portföyümüz",
+    "subtitle": "Çalışmalarımız",
+    "viewProject": "Projeyi Görüntüle",
+    "allProjects": "Tüm Projeler",
+    "filterByCategory": "Kategoriye Göre Filtrele"
+  },
+
+  "comingSoon": {
+    "title": "Çok Yakında",
+    "subtitle": "Harika bir şey üzerinde çalışıyoruz!",
+    "launchingIn": "Başlangıca Kalan",
+    "days": "Gün",
+    "hours": "Saat",
+    "minutes": "Dakika",
+    "seconds": "Saniye",
+    "notifyMe": "Bana Haber Ver",
+    "emailPlaceholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol"
+  },
+
+  "notFound": {
+    "title": "404 - Sayfa Bulunamadı",
+    "subtitle": "Oops! Aradığınız sayfa bulunamadı",
+    "message": "Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanılamıyor olabilir.",
+    "backToHome": "Ana Sayfaya Dön",
+    "searchSite": "Sitede Ara"
+  }
+}

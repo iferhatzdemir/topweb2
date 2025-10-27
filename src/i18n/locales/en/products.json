@@ -1,0 +1,107 @@
+{
+  "addToCart": "Add to Cart",
+  "addToWishlist": "Add to Wishlist",
+  "quickView": "Quick View",
+  "compareProduct": "Compare Product",
+  "price": "Price",
+  "quantity": "Quantity",
+  "availability": "Availability",
+  "inStock": "In Stock",
+  "outOfStock": "Out of Stock",
+  "sku": "SKU",
+  "category": "Category",
+  "categories": "Categories",
+  "tags": "Tags",
+  "description": "Description",
+  "reviews": "Reviews",
+  "comments": "Comments",
+  "relatedProducts": "Related Products",
+  "newArrival": "New Arrival",
+  "bestSeller": "Best Seller",
+  "onSale": "On Sale",
+  "featured": "Featured",
+  "discount": "Discount",
+  "freeShipping": "Free Shipping",
+  "organic": "Organic",
+  "fresh": "Fresh",
+
+  "share": "Share",
+  "guaranteedSafeCheckout": "Guaranteed Safe Checkout",
+
+  "tabs": {
+    "description": "Description",
+    "reviews": "Reviews",
+    "comments": "Comments",
+    "shippingPolicy": "Shipping Policy",
+    "sizeChart": "Size Chart"
+  },
+
+  "customerReviews": "Customer Reviews",
+  "reviewsCount": "({{count}} Reviews)",
+  "commentsCount": "Comments ({{count}})",
+  "leaveReply": "Leave a Reply",
+  "addReview": "Add a Review",
+  "yourRatings": "Your Ratings:",
+
+  "sorting": {
+    "defaultSorting": "Default Sorting",
+    "sortByPopularity": "Sort by popularity",
+    "sortByNewArrivals": "Sort by new arrivals",
+    "sortByPriceLowToHigh": "Sort by price: low to high",
+    "sortByPriceHighToLow": "Sort by price: high to low"
+  },
+
+  "showing": "Showing {{firstItem}}-{{lastItem}} of {{totalItems}} results",
+
+  "shippingPolicy": {
+    "title": "Shipping policy for our store",
+    "delivery": "1-2 business days (Typically by end of day)",
+    "moneyBack": "30 days money back guarantee",
+    "support": "24/7 live support",
+    "info1": "odio dignissim qui blandit praesent",
+    "info2": "luptatum zzril delenit augue duis dolore",
+    "info3": "te feugait nulla facilisi."
+  },
+
+  "sizeChart": {
+    "size": "SIZE",
+    "uk": "UK",
+    "europe": "EUROPE",
+    "usaCanada": "USA/CANADA",
+    "ausNz": "AUS / NZ"
+  },
+
+  "colors": {
+    "title": "Color",
+    "black": "Black",
+    "white": "White",
+    "red": "Red",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "navy": "Navy"
+  },
+
+  "sizes": {
+    "title": "Size",
+    "s": "S",
+    "m": "M",
+    "l": "L",
+    "xl": "XL",
+    "xxl": "XXL"
+  },
+
+  "placeholders": {
+    "typeComment": "Type your comments....",
+    "typeName": "Type your name....",
+    "typeEmail": "Type your email....",
+    "typeWebsite": "Type your website....",
+    "typeReview": "Type your reviews....",
+    "addYourPrice": "Add Your Price",
+    "selectDate": "Select Date"
+  },
+
+  "labels": {
+    "saveInfo": "Save my name, email, and website in this browser for the next time I comment."
+  }
+}

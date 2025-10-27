@@ -1,0 +1,21 @@
+{
+  "home": "Ana Sayfa",
+  "about": "Hakkımızda",
+  "services": "Hizmetler",
+  "products": "Ürünler",
+  "shop": "Mağaza",
+  "blog": "Blog",
+  "contact": "İletişim",
+  "cart": "Sepet",
+  "wishlist": "Favori Listem",
+  "account": "Hesabım",
+  "login": "Giriş Yap",
+  "register": "Kayıt Ol",
+  "logout": "Çıkış Yap",
+  "team": "Ekip",
+  "portfolio": "Portföy",
+  "faq": "Sık Sorulan Sorular",
+  "locations": "Lokasyonlar",
+  "history": "Tarihçemiz",
+  "checkout": "Ödeme"
+}

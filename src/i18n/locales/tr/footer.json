@@ -1,0 +1,65 @@
+{
+  "about": {
+    "title": "Hakkımızda",
+    "description": "Organik ve taze ürünlerle sağlıklı yaşam için en kaliteli alışveriş deneyimini sunuyoruz."
+  },
+  "company": {
+    "title": "Şirket",
+    "about": "Hakkımızda",
+    "blog": "Blog",
+    "allProducts": "Tüm Ürünler",
+    "locationsMap": "Lokasyon Haritası",
+    "faq": "Sık Sorulan Sorular",
+    "contactUs": "Bize Ulaşın"
+  },
+  "customerCare": {
+    "title": "Müşteri Hizmetleri",
+    "login": "Giriş Yap",
+    "myAccount": "Hesabım",
+    "wishList": "Favori Listem",
+    "orderTracking": "Sipariş Takibi",
+    "faq": "SSS",
+    "contactUs": "İletişim"
+  },
+  "services": {
+    "title": "Hizmetler",
+    "customization": "Özelleştirme",
+    "support": "Destek",
+    "shipping": "Kargo",
+    "returns": "İade",
+    "warranty": "Garanti"
+  },
+  "newsletter": {
+    "title": "Bültenimize Abone Olun",
+    "subtitle": "En son haberler ve özel tekliflerden haberdar olun",
+    "placeholder": "E-posta adresiniz",
+    "button": "Abone Ol",
+    "success": "Aboneliğiniz başarıyla oluşturuldu!",
+    "error": "Abonelik sırasında bir hata oluştu."
+  },
+  "copyright": {
+    "text": "© {{year}} Broccoli. Tüm hakları saklıdır.",
+    "allRightsReserved": "Tüm hakları saklıdır.",
+    "designedBy": "Tasarım:",
+    "poweredBy": "Geliştiren:"
+  },
+  "social": {
+    "title": "Bizi Takip Edin",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "linkedin": "LinkedIn",
+    "pinterest": "Pinterest"
+  },
+  "payment": {
+    "title": "Ödeme Yöntemlerimiz",
+    "securePayment": "Güvenli Ödeme"
+  },
+  "contact": {
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "workingHours": "Çalışma Saatleri"
+  }
+}

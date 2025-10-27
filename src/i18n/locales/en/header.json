@@ -1,0 +1,50 @@
+{
+  "topBar": {
+    "address": "15/A, Nest Tower, NYC",
+    "email": "info@webmail.com",
+    "languages": {
+      "label": "Language",
+      "english": "English",
+      "arabic": "Arabic",
+      "bengali": "Bengali",
+      "chinese": "Chinese",
+      "french": "French",
+      "hindi": "Hindi",
+      "turkish": "Turkish"
+    },
+    "currency": {
+      "label": "Currency",
+      "usd": "USD",
+      "eur": "EUR",
+      "gbp": "GBP",
+      "try": "TRY"
+    }
+  },
+  "search": {
+    "placeholder": "Search products...",
+    "button": "Search",
+    "noResults": "No results found",
+    "searching": "Searching..."
+  },
+  "cart": {
+    "title": "My Cart",
+    "emptyCart": "Your cart is empty",
+    "itemCount": "{{count}} items",
+    "subtotal": "Subtotal",
+    "viewCart": "View Cart",
+    "checkout": "Checkout"
+  },
+  "account": {
+    "myAccount": "My Account",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "orders": "My Orders",
+    "wishlist": "Wishlist",
+    "settings": "Settings"
+  },
+  "mobileMenu": {
+    "menu": "Menu",
+    "close": "Close"
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Gardening",
+    "price": 49,
+    "features": [
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit"
+    ],
+    "path": "#"
+  },
+  {
+    "title": "Gardening",
+    "price": 79,
+    "features": [
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit"
+    ],
+    "path": "#",
+    "label": "Most Popular"
+  },
+  {
+    "title": "Gardening",
+    "price": 99,
+    "features": [
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit",
+      "Lorem, ipsum dolor",
+      "Lorem ipsum dolor sit"
+    ],
+    "path": "#"
+  }
+]

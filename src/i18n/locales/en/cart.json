@@ -1,0 +1,22 @@
+{
+  "title": "Shopping Cart",
+  "emptyCart": "Your cart is empty!",
+  "continueShopping": "Continue Shopping",
+  "updateCart": "Update Cart",
+  "clearCart": "Clear Cart",
+  "subtotal": "Subtotal",
+  "cartTotals": "Cart Totals",
+  "shippingHandling": "Shipping and Handling",
+  "shipping": "Shipping",
+  "tax": "Tax",
+  "vat": "VAT",
+  "orderTotal": "Order Total",
+  "total": "Total",
+  "proceedToCheckout": "Proceed to Checkout",
+  "itemsInCart": "{{count}} items in cart",
+  "removeItem": "Remove Item",
+  "couponCode": "Coupon code",
+  "applyCoupon": "Apply Coupon",
+  "estimateShipping": "Estimate Shipping",
+  "freeShippingOver": "Free shipping over {{amount}}"
+}

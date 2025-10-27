@@ -1,0 +1,22 @@
+{
+  "emptyCart": "Empty Cart!",
+  "emptyCartDescription": "Your cart is empty. Browse our products to start shopping.",
+  "noProduct": "No Product!",
+  "noProductDescription": "No products found matching your criteria. Please try different filters.",
+  "emptyWishlist": "Empty Wishlist!",
+  "emptyWishlistDescription": "You haven't added any products to your wishlist yet.",
+  "noOrders": "No Orders!",
+  "noOrdersDescription": "You haven't placed any orders yet.",
+  "noReviews": "No Reviews Yet",
+  "noReviewsDescription": "This product hasn't been reviewed yet. Be the first to review!",
+  "noComments": "No Comments Yet",
+  "noCommentsDescription": "No comments have been posted for this content yet.",
+  "noResults": "No Results Found",
+  "noResultsDescription": "No results matching your search were found.",
+  "noNotifications": "No Notifications",
+  "noNotificationsDescription": "You don't have any new notifications at the moment.",
+  "noAddress": "No Saved Address",
+  "noAddressDescription": "You don't have any saved addresses yet. Please add an address.",
+  "noPaymentMethod": "No Saved Payment Method",
+  "noPaymentMethodDescription": "You don't have any saved payment methods yet."
+}
