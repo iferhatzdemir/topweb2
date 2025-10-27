@@ -24,6 +24,7 @@
   "freeShipping": "Free Shipping",
   "organic": "Organic",
   "fresh": "Fresh",
+  "speed": "{{value}} km/h",
 
   "share": "Share",
   "guaranteedSafeCheckout": "Guaranteed Safe Checkout",

@@ -3,14 +3,15 @@
 
 import countDiscount from "@/libs/countDiscount";
 import countTotalPrice from "@/libs/countTotalPrice";
-import modifyAmount from "@/libs/modifyAmount";
 import sliceText from "@/libs/sliceText";
 import { useCartContext } from "@/providers/CartContext";
 import { useProductContext } from "@/providers/ProductContext";
 import { useWishlistContext } from "@/providers/WshlistContext";
+import { useLocale } from "@/hooks/useLocale";
+import { formatCurrency } from "@/i18n/formatters";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const CartProduct = ({
   product,
@@ -30,8 +31,17 @@ const CartProduct = ({
   // variables
   const { netPrice } = countDiscount(price, disc);
   const totalPrice = countTotalPrice([{ ...product, quantity }]);
-  const netPriceModified = modifyAmount(netPrice);
-  const totalPiceModified = modifyAmount(totalPrice);
+  const { t, locale } = useLocale('cart');
+
+  const formattedUnitPrice = useMemo(
+    () => formatCurrency(netPrice, locale),
+    [netPrice, locale]
+  );
+
+  const formattedTotalPrice = useMemo(
+    () => formatCurrency(totalPrice, locale),
+    [totalPrice, locale]
+  );
   const isQuantiy = quantity > 1;
 
   //   get quantity
@@ -87,9 +97,9 @@ const CartProduct = ({
           <Link href={`/products/${id}`}>{sliceText(title, 30)}</Link>
         </h4>
       </td>
-      <td className="cart-product-price">${netPriceModified}</td>
+      <td className="cart-product-price">{formattedUnitPrice}</td>
       {isWishlist ? (
-        <td className="cart-product-stock">In Stock</td>
+        <td className="cart-product-stock">{t('inStock')}</td>
       ) : (
         <td className="cart-product-quantity">
           <div className="cart-plus-minus" ref={inputRef}>
@@ -126,11 +136,11 @@ const CartProduct = ({
             data-bs-toggle="modal"
             data-bs-target="#add_to_cart_modal"
           >
-            Add to Cart
+            {t('addToCart')}
           </Link>
         </td>
       ) : (
-        <td className="cart-product-subtotal">${totalPiceModified}</td>
+        <td className="cart-product-subtotal">{formattedTotalPrice}</td>
       )}
     </tr>
   );

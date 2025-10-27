@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cms-client:generate": "node scripts/generate-cms-client.mjs"
   },
   "dependencies": {
     "i18next": "^25.6.0",

@@ -1,15 +1,18 @@
-import ProductDetailsMain from "@/components/layout/main/ProductDetailsMain";
 import PageWrapper from "@/components/shared/wrappers/PageWrapper";
-import getAllProducts from "@/libs/getAllProducts";
+import ProductDetailPageContent from "@/components/cms/ProductDetailPageContent";
+import { getProductById, listProducts } from "@/lib/cms/queries";
 import { notFound } from "next/navigation";
 
-const products = getAllProducts();
-const ProductDetails = ({ params }) => {
+export const revalidate = 300;
+
+const ProductDetails = async ({ params }) => {
   const { id } = params;
-  const isExistProducts = products?.find(({ id: id1 }) => id1 === parseInt(id));
-  if (!isExistProducts) {
+  const product = await getProductById(id);
+
+  if (!product) {
     notFound();
   }
+
   return (
     <PageWrapper
       isNotHeaderTop={true}
@@ -17,12 +20,16 @@ const ProductDetails = ({ params }) => {
       isTextWhite={true}
       isNavbarAppointmentBtn={true}
     >
-      <ProductDetailsMain type={1} />
+      <ProductDetailPageContent productId={id} initialData={product} />
     </PageWrapper>
   );
 };
+
 export async function generateStaticParams() {
-  return products?.map(({ id }) => ({ id: id.toString() }));
+  const products = await listProducts({ take: 50 });
+  return products
+    .filter((product) => Boolean(product.id))
+    .map((product) => ({ id: product.id }));
 }
 
 export default ProductDetails;

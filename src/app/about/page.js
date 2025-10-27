@@ -1,8 +1,11 @@
-import AboutMain from "@/components/layout/main/AboutMain";
 import PageWrapper from "@/components/shared/wrappers/PageWrapper";
-import React from "react";
+import StaticPageContent from "@/components/cms/StaticPageContent";
+import { getStaticPage } from "@/lib/cms/queries";
 
-const About = () => {
+export const revalidate = 300;
+
+const About = async () => {
+  const page = await getStaticPage("hakkimizda");
   return (
     <PageWrapper
       isNotHeaderTop={true}
@@ -10,7 +13,7 @@ const About = () => {
       isTextWhite={true}
       isNavbarAppointmentBtn={true}
     >
-      <AboutMain />
+      <StaticPageContent slug="hakkimizda" initialPage={page} />
     </PageWrapper>
   );
 };

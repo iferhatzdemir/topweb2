@@ -5,13 +5,28 @@
   "paymentMethod": "Ödeme Yöntemi",
   "cartTotals": "Sepet Toplamı",
   "orderSummary": "Sipariş Özeti",
+  "noProduct": "Sepette ürün bulunmuyor!",
+
+  "checkoutModeLabel": "Ödeme türü",
+  "checkoutGuest": "Misafir ödemesi",
+  "checkoutMember": "Üye girişi ile ödeme",
+  "checkoutGuestHint": "Hesap oluşturmadan satın alma işlemini tamamlayın.",
+  "checkoutMemberHint": "Kayıtlı adresler, faturalar ve sadakat avantajları için giriş yapın.",
+  "accountIdPlaceholder": "Müşteri numarası veya sadakat kodu (opsiyonel)",
 
   "returningCustomer": "Müşteri misiniz?",
+  "returningCustomerCta": "Giriş yapmak için tıklayın",
   "returningCustomerMessage": "Hesabınıza giriş yapın.",
   "haveCoupon": "Kupon kodunuz var mı?",
+  "couponCodeCta": "Kodunuzu girmek için tıklayın",
   "haveCouponMessage": "Kupon kodunuzu buraya girin.",
   "pleaseLoginAccount": "Lütfen hesabınıza giriş yapın.",
   "couponCodeMessage": "Kupon kodunuz varsa, lütfen aşağıya uygulayın.",
+  "placeholders": {
+    "name": "Adınızı girin",
+    "email": "E-posta adresinizi girin",
+    "password": "Şifrenizi girin"
+  },
 
   "firstName": "Ad",
   "lastName": "Soyad",
@@ -21,6 +36,17 @@
   "companyAddress": "Şirket Adresi (opsiyonel)",
   "country": "Ülke",
   "selectCountry": "Ülke Seçin",
+  "countries": {
+    "turkey": "Türkiye",
+    "australia": "Avustralya",
+    "canada": "Kanada",
+    "china": "Çin",
+    "morocco": "Fas",
+    "saudiArabia": "Suudi Arabistan",
+    "unitedKingdom": "Birleşik Krallık (UK)",
+    "unitedStates": "Amerika Birleşik Devletleri (US)",
+    "germany": "Almanya"
+  },
   "address": "Adres",
   "houseNumberAndStreet": "Mahalle, sokak ve kapı numarası",
   "apartmentOptional": "Daire, kat, vb. (opsiyonel)",
@@ -45,6 +71,23 @@
   "paypalDescription": "PayPal ile ödeme yapın; PayPal hesabınız yoksa kredi kartınızla ödeyebilirsiniz.",
   "creditCard": "Kredi Kartı",
   "debitCard": "Banka Kartı",
+  "paymentProviders": {
+    "iyzico": {
+      "name": "İyzico",
+      "description": "TRY kartlar için taksit ve 3D Secure desteği."
+    },
+    "paytr": {
+      "name": "PayTR",
+      "description": "Yerli kartlarda 3D Secure ve BKM Express desteği."
+    },
+    "stripe": {
+      "name": "Stripe",
+      "description": "Global kart ve Apple Pay / Google Pay desteği."
+    }
+  },
+  "paymentMethodChoice": "Ödeme yöntemini seçin",
+  "payment3dsDescription": "Ödemeler TRY para biriminde 3D Secure doğrulaması ile işlenir.",
+  "complete3ds": "3D Secure doğrulamasını tamamla",
 
   "cartSubtotal": "Ara Toplam",
   "shippingHandling": "Kargo ve İşlem",
@@ -65,22 +108,53 @@
   "orderConfirmation": "Sipariş Onayı",
   "orderNumber": "Sipariş Numarası",
   "orderDate": "Sipariş Tarihi",
+  "orderStatusLabel": "Sipariş durumu",
+  "orderStatuses": {
+    "requires_action": "3D Secure bekleniyor",
+    "confirmed": "Onaylandı",
+    "cancelled": "İptal edildi",
+    "refunded": "İade edildi"
+  },
   "estimatedDelivery": "Tahmini Teslimat",
   "trackOrder": "Siparişi Takip Et",
+  "cancelOrder": "Siparişi iptal et",
+  "requestRefund": "İade talep et",
 
   "billingAddress": "Fatura Adresi",
   "shippingAddress": "Teslimat Adresi",
   "sameAsBilling": "Fatura adresi ile aynı",
   "differentShipping": "Farklı teslimat adresi kullan",
+  "addressBookTitle": "Kayıtlı adresler",
+  "addressLabels": {
+    "home": "Ev",
+    "office": "Ofis",
+    "saved": "Kaydedilmiş adres"
+  },
+  "saveAddressToBook": "Bu teslimat adresini adres defterime kaydet",
 
   "couponCode": "Kupon Kodu",
   "couponCodePlaceholder": "Kupon kodunuzu girin",
   "applyCoupon": "Kupon Uygula",
   "removeCoupon": "Kuponu Kaldır",
+  "couponAppliedMessage": "{{code}} kuponu uygulandı.",
+  "couponReasons": {
+    "notFound": "Kupon kodu bulunamadı.",
+    "expired": "Bu kuponun süresi dolmuş.",
+    "minSubtotal": "Sipariş tutarı minimum koşulu sağlamıyor.",
+    "currencyMismatch": "Kupon bu para birimi için geçerli değil.",
+    "inactive": "Kupon henüz aktif değil.",
+    "unsupported": "Kupon uygulanamadı."
+  },
 
   "freeShipping": "Ücretsiz Kargo",
   "standardShipping": "Standart Kargo",
+  "standardShippingDescription": "Türkiye genelinde {{days}} iş günü içinde teslimat.",
   "expressShipping": "Hızlı Kargo",
+  "expressShippingDescription": "Büyük şehirlerde {{days}} iş günü içinde teslimat.",
+  "storePickup": "Mağazadan Teslim Al",
+  "storePickupDescription": "Aynı gün showroom'dan teslim alın.",
+  "shippingOptionsTitle": "Kargo Seçenekleri",
+  "shippingOptionSelected": "Seçilen: {{option}}",
 
   "guaranteedSafeCheckout": "Güvenli Ödeme Garantisi",
   "securePayment": "Güvenli Ödeme",

@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.header p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.treePanel,
+.formPanel,
+.previewPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.treeList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.treeItem + .treeItem {
+  margin-top: 0.25rem;
+}
+
+.treeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base);
+}
+
+.treeRowActive {
+  background: rgba(213, 115, 115, 0.18);
+}
+
+.treeSelect {
+  flex: 1;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.treeActions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.selectLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.selectLabel select {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  padding: 0.5rem 0.65rem;
+  background: var(--color-white);
+}
+
+.previewPanel pre {
+  margin: 0;
+  padding: var(--space-sm);
+  background: rgba(17, 24, 39, 0.05);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

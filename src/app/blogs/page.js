@@ -1,7 +1,11 @@
-import BlogsMain from "@/components/layout/main/BlogsMain";
 import PageWrapper from "@/components/shared/wrappers/PageWrapper";
+import BlogPageContent from "@/components/cms/BlogPageContent";
+import { listBlogPosts } from "@/lib/cms/queries";
 
-const Blogs = () => {
+export const revalidate = 300;
+
+const Blogs = async () => {
+  const posts = await listBlogPosts();
   return (
     <PageWrapper
       isNotHeaderTop={true}
@@ -9,7 +13,7 @@ const Blogs = () => {
       isTextWhite={true}
       isNavbarAppointmentBtn={true}
     >
-      <BlogsMain />
+      <BlogPageContent initialPosts={posts} />
     </PageWrapper>
   );
 };

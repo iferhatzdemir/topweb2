@@ -136,6 +136,7 @@ t('itemsInCart', { count: 5 })  // "5 ürün sepetinizde"
 ### 4.2 Checkout Akışı
 - [ ] **Sepet sayfası**: Tüm metinler çevrilmiş
 - [ ] **Checkout formu**: Form label'ları ve placeholder'lar çevrilmiş
+- [ ] **Placeholder doğruluğu**: Placeholder metinleri yönergeleri koruyor ve locale'e göre uyarlanmış
 - [ ] **Doğrulama mesajları**: Hata mesajları çevrilmiş
 - [ ] **Başarı mesajları**: Sipariş onay mesajları çevrilmiş
 - [ ] **Email bildirimleri**: Otomatik email'ler doğru dilde

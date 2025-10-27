@@ -1,0 +1,426 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CMS API",
+    "description": "Headless CMS API for the ecommerce platform",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "http://localhost:4000" }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "PublishStatus": {
+        "type": "string",
+        "enum": ["DRAFT", "PUBLISHED", "ARCHIVED"]
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "description": { "type": "string", "nullable": true },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "parentId": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "children": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Category" }
+          }
+        },
+        "required": ["id", "name", "slug", "status", "createdAt", "updatedAt"]
+      },
+      "MediaAsset": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "bucket": { "type": "string" },
+          "key": { "type": "string" },
+          "url": { "type": "string" },
+          "altText": { "type": "string", "nullable": true },
+          "status": { "$ref": "#/components/schemas/PublishStatus" }
+        },
+        "required": ["id", "kind", "bucket", "key", "url", "status"]
+      },
+      "ProductVersion": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "productId": { "type": "string" },
+          "versionNumber": { "type": "integer" },
+          "title": { "type": "string" },
+          "summary": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "currency": { "type": "string" },
+          "price": { "type": "number", "format": "float" },
+          "jsonSpec": { "type": "object", "nullable": true },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "productId",
+          "versionNumber",
+          "title",
+          "currency",
+          "price",
+          "status",
+          "createdAt"
+        ]
+      },
+      "ProductCategoryPivot": {
+        "type": "object",
+        "properties": {
+          "categoryId": { "type": "string" },
+          "category": { "$ref": "#/components/schemas/Category" }
+        },
+        "required": ["categoryId", "category"]
+      },
+      "ProductMediaPivot": {
+        "type": "object",
+        "properties": {
+          "mediaId": { "type": "string" },
+          "ordering": { "type": "integer" },
+          "isPrimary": { "type": "boolean" },
+          "media": { "$ref": "#/components/schemas/MediaAsset" }
+        },
+        "required": ["mediaId", "ordering", "isPrimary", "media"]
+      },
+      "SeoMeta": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "metaTitle": { "type": "string", "nullable": true },
+          "metaDescription": { "type": "string", "nullable": true },
+          "metaKeywords": { "type": "string", "nullable": true }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "slug": { "type": "string" },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "latestVersion": { "type": "integer" },
+          "publishedVersion": { "type": "integer", "nullable": true },
+          "publishedAt": { "type": "string", "format": "date-time", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "versions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductVersion" }
+          },
+          "categories": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductCategoryPivot" }
+          },
+          "media": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductMediaPivot" }
+          },
+          "seo": { "$ref": "#/components/schemas/SeoMeta" }
+        },
+        "required": [
+          "id",
+          "slug",
+          "status",
+          "latestVersion",
+          "createdAt",
+          "updatedAt",
+          "versions",
+          "categories",
+          "media"
+        ]
+      },
+      "PageVersion": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "pageId": { "type": "string" },
+          "versionNumber": { "type": "integer" },
+          "title": { "type": "string" },
+          "body": { "type": "string", "nullable": true },
+          "status": { "$ref": "#/components/schemas/PublishStatus" }
+        },
+        "required": ["id", "pageId", "versionNumber", "title", "status"]
+      },
+      "PageBlock": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "pageId": { "type": "string" },
+          "code": { "type": "string" },
+          "type": { "type": "string" },
+          "content": { "type": "object" },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "version": { "type": "integer" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "pageId", "code", "type", "content", "status", "version", "createdAt", "updatedAt"]
+      },
+      "Page": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "latestVersion": { "type": "integer" },
+          "publishedAt": { "type": "string", "format": "date-time", "nullable": true },
+          "versions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PageVersion" }
+          },
+          "blocks": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PageBlock" }
+          },
+          "seo": { "$ref": "#/components/schemas/SeoMeta" }
+        },
+        "required": ["id", "slug", "title", "status", "latestVersion", "versions", "blocks"]
+      },
+      "MenuItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "url": { "type": "string" },
+          "parentId": { "type": "string", "nullable": true },
+          "sortOrder": { "type": "integer" },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "children": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MenuItem" }
+          }
+        },
+        "required": ["id", "title", "url", "sortOrder", "status"]
+      },
+      "Menu": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "code": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "$ref": "#/components/schemas/PublishStatus" },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MenuItem" }
+          }
+        },
+        "required": ["id", "code", "title", "status", "items"]
+      }
+    }
+  },
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": ["products"],
+        "operationId": "listProducts",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": { "$ref": "#/components/schemas/PublishStatus" }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 0 }
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Product" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": ["products"],
+        "operationId": "getProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product detail",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": ["categories"],
+        "operationId": "listCategories",
+        "responses": {
+          "200": {
+            "description": "List categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Category" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages": {
+      "get": {
+        "tags": ["pages"],
+        "operationId": "listPages",
+        "responses": {
+          "200": {
+            "description": "List pages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Page" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{id}": {
+      "get": {
+        "tags": ["pages"],
+        "operationId": "getPage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Page detail",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Page" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blocks": {
+      "get": {
+        "tags": ["blocks"],
+        "operationId": "listBlocks",
+        "parameters": [
+          {
+            "name": "pageId",
+            "in": "query",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List blocks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/PageBlock" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/menus": {
+      "get": {
+        "tags": ["menus"],
+        "operationId": "listMenus",
+        "responses": {
+          "200": {
+            "description": "List menus",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Menu" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/menus/{id}": {
+      "get": {
+        "tags": ["menus"],
+        "operationId": "getMenu",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Menu detail",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Menu" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

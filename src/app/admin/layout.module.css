@@ -1,0 +1,9 @@
+.authLayout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: radial-gradient(circle at top, rgba(213, 115, 115, 0.18), transparent 55%),
+    var(--surface-background);
+}

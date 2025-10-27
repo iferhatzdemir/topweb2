@@ -1,0 +1,170 @@
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { join } from 'path';
+
+const SPEC_PATH = join(process.cwd(), 'cms-api', 'openapi.json');
+const OUTPUT_DIR = join(process.cwd(), 'src', 'lib', 'cms-client');
+
+function loadSpec() {
+  return JSON.parse(readFileSync(SPEC_PATH, 'utf8'));
+}
+
+function ensureDir(path) {
+  mkdirSync(path, { recursive: true });
+}
+
+function refName(ref) {
+  return ref.split('/').pop();
+}
+
+function toTsType(schema) {
+  if (!schema) {
+    return 'unknown';
+  }
+  if (schema.$ref) {
+    return refName(schema.$ref);
+  }
+  if (schema.type === 'string' && schema.enum) {
+    return schema.enum.map((v) => JSON.stringify(v)).join(' | ');
+  }
+  if (schema.type === 'array') {
+    return `${toTsType(schema.items)}[]`;
+  }
+  if (schema.type === 'object') {
+    if (schema.properties) {
+      const lines = Object.entries(schema.properties).map(([key, value]) => {
+        const optional = schema.required?.includes(key) ? '' : '?';
+        const nullable = value.nullable ? ' | null' : '';
+        return `  ${key}${optional}: ${toTsType(value)}${nullable};`;
+      });
+      return `{
+${lines.join('\n')}}`;
+    }
+    return 'Record<string, any>';
+  }
+  switch (schema.type) {
+    case 'string':
+      return 'string';
+    case 'integer':
+    case 'number':
+      return 'number';
+    case 'boolean':
+      return 'boolean';
+    default:
+      return 'any';
+  }
+}
+
+function renderSchema(name, schema) {
+  if (schema.enum) {
+    return `export type ${name} = ${schema.enum.map((v) => JSON.stringify(v)).join(' | ')};\n`;
+  }
+  if (schema.type === 'object' && schema.properties) {
+    const lines = Object.entries(schema.properties).map(([key, value]) => {
+      const optional = schema.required?.includes(key) ? '' : '?';
+      const nullable = value.nullable ? ' | null' : '';
+      return `  ${key}${optional}: ${toTsType(value)}${nullable};`;
+    });
+    return `export interface ${name} {\n${lines.join('\n')}\n}\n`;
+  }
+  return `export type ${name} = ${toTsType(schema)};\n`;
+}
+
+function buildQueryType(operationId, parameters) {
+  const queryParams = (parameters ?? []).filter((param) => param.in === 'query');
+  if (!queryParams.length) {
+    return null;
+  }
+  const typeName = `${operationId.charAt(0).toUpperCase() + operationId.slice(1)}Query`;
+  const lines = queryParams.map((param) => {
+    const optional = param.required ? '' : '?';
+    const nullable = param.schema?.nullable ? ' | null' : '';
+    return `  ${param.name}${optional}: ${toTsType(param.schema ?? { type: 'string' })}${nullable};`;
+  });
+  return { name: typeName, body: `export interface ${typeName} {\n${lines.join('\n')}\n}\n` };
+}
+
+function getResponseType(operation) {
+  const responses = operation.responses ?? {};
+  const success = responses['200'] ?? responses['201'];
+  const content = success?.content?.['application/json'];
+  if (!content) {
+    return 'void';
+  }
+  return toTsType(content.schema);
+}
+
+function generateClient() {
+  const spec = loadSpec();
+  ensureDir(OUTPUT_DIR);
+
+  const schemas = spec.components?.schemas ?? {};
+  const schemaOutput = Object.entries(schemas)
+    .map(([name, schema]) => renderSchema(name, schema))
+    .join('\n');
+
+  const queryTypeMap = new Map();
+  const functions = [];
+
+  Object.entries(spec.paths ?? {}).forEach(([pathKey, methods]) => {
+    Object.entries(methods).forEach(([method, operation]) => {
+      if (!operation.operationId) {
+        return;
+      }
+      const operationId = operation.operationId;
+      const queryType = buildQueryType(operationId, operation.parameters);
+      if (queryType) {
+        queryTypeMap.set(queryType.name, queryType.body);
+      }
+      const pathParams = (operation.parameters ?? []).filter((param) => param.in === 'path');
+      const tsParams = [];
+      const jsParams = [];
+      pathParams.forEach((param) => {
+        tsParams.push(`${param.name}: string`);
+        jsParams.push(param.name);
+      });
+      if (queryType) {
+        tsParams.push(`query?: ${queryType.name}`);
+        jsParams.push('query = {}');
+      }
+      tsParams.push('requestInit?: RequestInit');
+      jsParams.push('requestInit');
+
+      const jsPathExpression = pathParams.length
+        ? '`' + pathKey.replace(/{/g, '${') + '`'
+        : JSON.stringify(pathKey);
+
+      functions.push({
+        method: method.toUpperCase(),
+        operationId,
+        responseType: getResponseType(operation),
+        tsParams,
+        jsParams,
+        hasQuery: Boolean(queryType),
+        jsPathExpression,
+      });
+    });
+  });
+
+  const jsFunctions = functions
+    .map((fn) => {
+      const params = fn.jsParams.join(', ');
+      const queryArg = fn.hasQuery ? 'query' : 'undefined';
+      return `    async ${fn.operationId}(${params}) {\n      return request(${fn.jsPathExpression}, { method: '${fn.method}', query: ${queryArg}, init: requestInit });\n    }`;
+    })
+    .join(',\n\n');
+
+  const jsFile = `// Auto-generated by scripts/generate-cms-client.mjs. Do not edit manually.\n\nconst DEFAULT_BASE_URL = process.env.NEXT_PUBLIC_CMS_API_URL || process.env.CMS_API_URL || 'http://localhost:4000';\n\nexport function createCmsClient(options = {}) {\n  const baseUrl = options.baseUrl || DEFAULT_BASE_URL;\n  const getAccessToken = options.getAccessToken || (() => options.token || (typeof window === 'undefined' ? process.env.CMS_API_TOKEN : undefined) || process.env.NEXT_PUBLIC_CMS_API_TOKEN);\n  const defaultHeaders = options.defaultHeaders || {};\n\n  async function request(path, { method = 'GET', query, init } = {}) {\n    const url = new URL(path, baseUrl.endsWith('/') ? baseUrl : baseUrl + '/');\n    if (query) {\n      Object.entries(query)\n        .filter(([, value]) => value !== undefined && value !== null)\n        .forEach(([key, value]) => {\n          url.searchParams.append(key, String(value));\n        });\n    }\n    const headers = {\n      ...defaultHeaders,\n      ...(init?.headers ? init.headers : {}),\n    };\n    const token = getAccessToken ? getAccessToken() : undefined;\n    if (token) {\n      headers.Authorization = \`Bearer \${token}\`;\n    }\n    const response = await fetch(url.toString(), {\n      method,\n      ...init,\n      headers,\n    });\n    if (!response.ok) {\n      const message = await safeReadError(response);\n      throw new Error(message);\n    }\n    if (response.status === 204) {\n      return undefined;\n    }\n    return response.json();\n  }\n\n  return {\n${jsFunctions}\n  };\n}\n\nasync function safeReadError(response) {\n  try {\n    const data = await response.json();\n    return data.message || response.statusText;\n  } catch (error) {\n    return response.statusText;\n  }\n}\n\nexport const defaultCmsClient = createCmsClient();\n`;
+
+  const queryTypes = Array.from(queryTypeMap.values()).join('\n');
+  const dtsFunctions = functions
+    .map((fn) => `  ${fn.operationId}(${fn.tsParams.join(', ')}): Promise<${fn.responseType}>;`)
+    .join('\n');
+
+  const dtsFile = `// Auto-generated by scripts/generate-cms-client.mjs. Do not edit manually.\n\nexport interface CmsClientOptions {\n  baseUrl?: string;\n  token?: string;\n  getAccessToken?: () => string | undefined;\n  defaultHeaders?: Record<string, string>;\n}\n\nexport interface CmsClient {\n${dtsFunctions}\n}\n\nexport function createCmsClient(options?: CmsClientOptions): CmsClient;\nexport const defaultCmsClient: CmsClient;\n\n${queryTypes}\n${schemaOutput}`;
+
+  ensureDir(OUTPUT_DIR);
+  writeFileSync(join(OUTPUT_DIR, 'index.js'), jsFile);
+  writeFileSync(join(OUTPUT_DIR, 'index.d.ts'), dtsFile);
+}
+
+generateClient();

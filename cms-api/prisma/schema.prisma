@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MediaKind {
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  passwordHash   String
+  displayName    String
+  isActive       Boolean       @default(true)
+  roles          UserRole[]
+  sessions       UserSession[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  auditLogs      AuditLog[]
+}
+
+model Role {
+  id          String          @id @default(cuid())
+  code        String          @unique
+  description String?
+  users       UserRole[]
+  permissions RolePermission[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  code        String           @unique
+  description String?
+  roles       RolePermission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  assignedAt   DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model UserRole {
+  userId String
+  roleId String
+  assignedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model UserSession {
+  id               String   @id @default(cuid())
+  userId           String
+  refreshTokenHash String
+  userAgent        String?
+  ipAddress        String?
+  expiresAt        DateTime
+  createdAt        DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Category {
+  id          String           @id @default(cuid())
+  parentId    String?
+  slug        String           @unique
+  name        String
+  description String?
+  status      PublishStatus    @default(DRAFT)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  products    ProductCategory[]
+
+  parent Category? @relation("CategoryToCategory", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryToCategory")
+}
+
+model Product {
+  id                 String             @id @default(cuid())
+  slug               String             @unique
+  status             PublishStatus      @default(DRAFT)
+  latestVersion      Int                @default(1)
+  publishedVersion   Int?
+  publishedAt        DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  versions           ProductVersion[]
+  categories         ProductCategory[]
+  variants           ProductVariant[]
+  media              ProductMedia[]
+  seo                SeoMeta?
+}
+
+model ProductVersion {
+  id            String        @id @default(cuid())
+  productId     String
+  versionNumber Int
+  title         String
+  summary       String?
+  description   String?
+  currency      String        @default("TRY")
+  price         Decimal       @db.Decimal(10, 2)
+  jsonSpec      Json?
+  status        PublishStatus @default(DRAFT)
+  createdById   String?
+  createdAt     DateTime      @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdBy User? @relation(fields: [createdById], references: [id])
+
+  @@unique([productId, versionNumber])
+}
+
+model ProductVariant {
+  id          String             @id @default(cuid())
+  productId   String
+  sku         String             @unique
+  optionTitle String
+  attributes  Json
+  status      PublishStatus      @default(DRAFT)
+  stockItems  StockLevel[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model InventoryLocation {
+  id        String       @id @default(cuid())
+  code      String       @unique
+  name      String
+  address   String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  stock     StockLevel[]
+}
+
+model StockLevel {
+  id             String   @id @default(cuid())
+  variantId      String
+  locationId     String
+  quantity       Int      @default(0)
+  reserved       Int      @default(0)
+  updatedAt      DateTime @updatedAt
+  variant        ProductVariant     @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  location       InventoryLocation  @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@unique([variantId, locationId])
+}
+
+model ProductCategory {
+  productId  String
+  categoryId String
+  assignedAt DateTime @default(now())
+
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([productId, categoryId])
+}
+
+model MediaAsset {
+  id          String     @id @default(cuid())
+  kind        MediaKind  @default(IMAGE)
+  bucket      String
+  key         String
+  url         String
+  altText     String?
+  metadata    Json?
+  status      PublishStatus @default(DRAFT)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  productUses ProductMedia[]
+}
+
+model ProductMedia {
+  productId String
+  mediaId   String
+  ordering  Int      @default(0)
+  isPrimary Boolean  @default(false)
+
+  product Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media   MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([productId, mediaId])
+}
+
+model Menu {
+  id        String      @id @default(cuid())
+  code      String      @unique
+  title     String
+  status    PublishStatus @default(DRAFT)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  items     MenuItem[]
+}
+
+model MenuItem {
+  id         String     @id @default(cuid())
+  menuId     String
+  parentId   String?
+  label      String
+  href       String
+  ordering   Int        @default(0)
+  status     PublishStatus @default(DRAFT)
+  metadata   Json?
+
+  menu   Menu     @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parent MenuItem? @relation("MenuItemToMenuItem", fields: [parentId], references: [id])
+  children MenuItem[] @relation("MenuItemToMenuItem")
+}
+
+model Page {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  title       String
+  status      PublishStatus  @default(DRAFT)
+  publishedAt DateTime?
+  latestVersion Int          @default(1)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  versions    PageVersion[]
+  blocks      PageBlock[]
+  seo         SeoMeta?
+}
+
+model PageVersion {
+  id            String        @id @default(cuid())
+  pageId        String
+  versionNumber Int
+  title         String
+  body          String?
+  status        PublishStatus  @default(DRAFT)
+  createdAt     DateTime       @default(now())
+  createdById   String?
+
+  page Page  @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdBy User? @relation(fields: [createdById], references: [id])
+
+  @@unique([pageId, versionNumber])
+}
+
+model PageBlock {
+  id          String        @id @default(cuid())
+  pageId      String
+  code        String
+  type        String
+  content     Json
+  status      PublishStatus   @default(DRAFT)
+  version     Int             @default(1)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, code])
+}
+
+model SeoMeta {
+  id            String   @id @default(cuid())
+  productId     String?  @unique
+  pageId        String?  @unique
+  title         String?
+  description   String?
+  keywords      String?
+  canonicalUrl  String?
+  ogImage       String?
+  jsonLd        Json?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  product Product? @relation(fields: [productId], references: [id])
+  page    Page?    @relation(fields: [pageId], references: [id])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  entityType  String
+  entityId    String
+  action      String
+  payload     Json?
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([entityType, entityId])
+}

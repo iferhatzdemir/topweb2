@@ -5,13 +5,28 @@
   "paymentMethod": "Payment Method",
   "cartTotals": "Cart Totals",
   "orderSummary": "Order Summary",
+  "noProduct": "No products in your cart!",
+
+  "checkoutModeLabel": "Checkout type",
+  "checkoutGuest": "Guest checkout",
+  "checkoutMember": "Member checkout",
+  "checkoutGuestHint": "Complete your purchase without creating an account.",
+  "checkoutMemberHint": "Sign in to use saved addresses, invoices and loyalty benefits.",
+  "accountIdPlaceholder": "Customer ID or loyalty number (optional)",
 
   "returningCustomer": "Returning customer?",
+  "returningCustomerCta": "Click here to login",
   "returningCustomerMessage": "Login to your account.",
   "haveCoupon": "Have a coupon?",
+  "couponCodeCta": "Click here to enter your code",
   "haveCouponMessage": "Enter your coupon code here.",
   "pleaseLoginAccount": "Please login to your account.",
   "couponCodeMessage": "If you have a coupon code, please apply it below.",
+  "placeholders": {
+    "name": "Enter your name",
+    "email": "Enter email address",
+    "password": "Enter your password"
+  },
 
   "firstName": "First Name",
   "lastName": "Last Name",
@@ -21,6 +36,17 @@
   "companyAddress": "Company Address (optional)",
   "country": "Country",
   "selectCountry": "Select Country",
+  "countries": {
+    "turkey": "Turkey",
+    "australia": "Australia",
+    "canada": "Canada",
+    "china": "China",
+    "morocco": "Morocco",
+    "saudiArabia": "Saudi Arabia",
+    "unitedKingdom": "United Kingdom (UK)",
+    "unitedStates": "United States (US)",
+    "germany": "Germany"
+  },
   "address": "Address",
   "houseNumberAndStreet": "House number and street name",
   "apartmentOptional": "Apartment, suite, unit etc. (optional)",
@@ -45,6 +71,23 @@
   "paypalDescription": "Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.",
   "creditCard": "Credit Card",
   "debitCard": "Debit Card",
+  "paymentProviders": {
+    "iyzico": {
+      "name": "İyzico",
+      "description": "Installments and 3D Secure payments for TRY cards."
+    },
+    "paytr": {
+      "name": "PayTR",
+      "description": "Supports domestic cards with 3D Secure and BKM Express."
+    },
+    "stripe": {
+      "name": "Stripe",
+      "description": "Global card support plus Apple Pay and Google Pay wallets."
+    }
+  },
+  "paymentMethodChoice": "Choose a payment method",
+  "payment3dsDescription": "Payments are processed in TRY with 3D Secure verification for eligible cards.",
+  "complete3ds": "Complete 3D Secure verification",
 
   "cartSubtotal": "Cart Subtotal",
   "shippingHandling": "Shipping and Handling",
@@ -65,22 +108,53 @@
   "orderConfirmation": "Order Confirmation",
   "orderNumber": "Order Number",
   "orderDate": "Order Date",
+  "orderStatusLabel": "Order status",
+  "orderStatuses": {
+    "requires_action": "Awaiting 3D Secure",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded"
+  },
   "estimatedDelivery": "Estimated Delivery",
   "trackOrder": "Track Order",
+  "cancelOrder": "Cancel order",
+  "requestRefund": "Request refund",
 
   "billingAddress": "Billing Address",
   "shippingAddress": "Shipping Address",
   "sameAsBilling": "Same as billing address",
   "differentShipping": "Use different shipping address",
+  "addressBookTitle": "Saved addresses",
+  "addressLabels": {
+    "home": "Home",
+    "office": "Office",
+    "saved": "Saved address"
+  },
+  "saveAddressToBook": "Save this shipping address to my address book",
 
   "couponCode": "Coupon Code",
   "couponCodePlaceholder": "Enter your coupon code",
   "applyCoupon": "Apply Coupon",
   "removeCoupon": "Remove Coupon",
+  "couponAppliedMessage": "Coupon {{code}} applied.",
+  "couponReasons": {
+    "notFound": "Coupon code was not found.",
+    "expired": "This coupon has expired.",
+    "minSubtotal": "Order amount does not meet the minimum requirement.",
+    "currencyMismatch": "Coupon is not valid for this currency.",
+    "inactive": "Coupon is not yet active.",
+    "unsupported": "Coupon could not be applied."
+  },
 
   "freeShipping": "Free Shipping",
   "standardShipping": "Standard Shipping",
+  "standardShippingDescription": "Delivered within {{days}} business days across Turkey.",
   "expressShipping": "Express Shipping",
+  "expressShippingDescription": "Delivered within {{days}} business day(s) for major cities.",
+  "storePickup": "Store Pickup",
+  "storePickupDescription": "Collect from our showroom on the same day.",
+  "shippingOptionsTitle": "Shipping Options",
+  "shippingOptionSelected": "Selected: {{option}}",
 
   "guaranteedSafeCheckout": "Guaranteed Safe Checkout",
   "securePayment": "Secure Payment",

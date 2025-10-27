@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+}
+
+.brand {
+  font-weight: 700;
+  font-family: var(--font-family-heading);
+  color: var(--color-primary-500);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.formRow {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: var(--space-md);
+}
+
+.badgeRow,
+.actionRow {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+.actionRow {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: var(--space-lg) 0;
+  }
+}

@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.denied {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  background: linear-gradient(160deg, rgba(213, 115, 115, 0.12), rgba(255, 255, 255, 0.9));
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.statLabel {
+  font-weight: 600;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.statDescription {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+.revenueChart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  height: 180px;
+}
+
+.revenueBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.revenueBarFill {
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(213, 115, 115, 0.85), rgba(213, 115, 115, 0.45));
+  transition: transform 0.2s ease;
+}
+
+.revenueBarFill:hover {
+  transform: translateY(-4px);
+}
+
+.activityList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.activityList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.activityTitle {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.activityMeta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.quickActions button {
+  border: 1px dashed rgba(213, 115, 115, 0.4);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  background: rgba(213, 115, 115, 0.08);
+  color: var(--color-primary-700);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.quickActions button:hover {
+  background: rgba(213, 115, 115, 0.18);
+  transform: translateY(-2px);
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+@media (max-width: 720px) {
+  .statValue {
+    font-size: 1.6rem;
+  }
+}

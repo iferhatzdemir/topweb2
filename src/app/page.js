@@ -1,10 +1,14 @@
-import IndexMain from "@/components/layout/main/IndexMain";
 import PageWrapper from "@/components/shared/wrappers/PageWrapper";
+import HomeCmsContent from "@/components/cms/HomeCmsContent";
+import { getHomePage } from "@/lib/cms/queries";
 
-export default function Home() {
+export const revalidate = 300;
+
+export default async function Home() {
+  const homePage = await getHomePage();
   return (
     <PageWrapper isNavbarAppointmentBtn={true}>
-      <IndexMain />
+      <HomeCmsContent initialPage={homePage} />
     </PageWrapper>
   );
 }

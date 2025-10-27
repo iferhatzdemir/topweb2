@@ -1,7 +1,18 @@
-import ShopMain from "@/components/layout/main/ShopMain";
 import PageWrapper from "@/components/shared/wrappers/PageWrapper";
+import { redirect } from "next/navigation";
+import { listCategories } from "@/lib/cms/queries";
+import CategoryPageContent from "@/components/cms/CategoryPageContent";
 
-const Shop = () => {
+export const revalidate = 300;
+
+const Shop = async () => {
+  const categories = await listCategories();
+  const firstCategory = categories[0];
+
+  if (firstCategory?.slug) {
+    redirect(`/categories/${firstCategory.slug}`);
+  }
+
   return (
     <PageWrapper
       isNotHeaderTop={true}
@@ -9,7 +20,7 @@ const Shop = () => {
       isTextWhite={true}
       isNavbarAppointmentBtn={true}
     >
-      <ShopMain isSidebar="primary" />
+      <CategoryPageContent slug={null} initialData={null} />
     </PageWrapper>
   );
 };

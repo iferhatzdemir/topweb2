@@ -1,0 +1,103 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14);
+  padding: var(--space-14) var(--space-10);
+}
+
+.hero {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-xl);
+  padding: var(--space-14);
+  box-shadow: var(--shadow-lg);
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.heroEyebrow {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary-600);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  color: var(--color-foreground-strong);
+}
+
+.heroBody {
+  font-size: 1.05rem;
+  color: var(--color-foreground-muted);
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.heroImageWrapper {
+  position: relative;
+  min-height: 240px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.heroImageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(213, 115, 115, 0.25), transparent 60%);
+}
+
+.blocksGrid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.blockList {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.blockTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-foreground-strong);
+}
+
+.blockBody {
+  font-size: 0.95rem;
+  color: var(--color-foreground-muted);
+  line-height: 1.5;
+}
+
+.loading,
+.error,
+.empty {
+  padding: var(--space-16) var(--space-10);
+  text-align: center;
+  display: grid;
+  gap: var(--space-4);
+  color: var(--color-foreground-muted);
+}
+
+.statusBadge {
+  margin-left: var(--space-2);
+  font-size: 0.75rem;
+  color: var(--color-foreground-muted);
+}

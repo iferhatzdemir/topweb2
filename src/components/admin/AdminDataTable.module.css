@@ -1,0 +1,139 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  padding: var(--space-lg);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  flex: 1 1 220px;
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.filterControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.filterControl select {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  padding: 0.35rem 0.65rem;
+  background: var(--color-white);
+  color: var(--text-primary);
+}
+
+.tableScroller {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.table thead {
+  background: rgba(213, 115, 115, 0.08);
+}
+
+.table th,
+.table td {
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 0.9rem;
+}
+
+.headerButton {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.sorted {
+  color: var(--color-primary-600);
+}
+
+.sortIndicator {
+  font-size: 0.85rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--text-secondary);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.pageSize {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-secondary);
+}
+
+.pageSize select {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  padding: 0.3rem 0.5rem;
+  background: var(--color-white);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pageIndicator {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 720px) {
+  .wrapper {
+    padding: var(--space-md);
+  }
+
+  .table {
+    min-width: 100%;
+  }
+}

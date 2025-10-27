@@ -24,6 +24,7 @@
   "freeShipping": "Ücretsiz Kargo",
   "organic": "Organik",
   "fresh": "Taze",
+  "speed": "{{value}} km/saat",
 
   "share": "Paylaş",
   "guaranteedSafeCheckout": "Güvenli Ödeme Garantisi",
