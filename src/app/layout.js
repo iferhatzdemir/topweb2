@@ -1,4 +1,4 @@
-import { Open_Sans, Rajdhani } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "@/assets/css/font-icons.css";
 import "@/assets/css/plugins.css";
 import "./globals.css";
@@ -6,17 +6,17 @@ import "@/assets/css/responsive.css";
 import Script from "next/script";
 import { Suspense } from "react";
 
-const open_sans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--ltn__body-font",
+  variable: "--font-family-body",
 });
-const rajdhani = Rajdhani({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+const poppins = Poppins({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
   display: "swap",
-  variable: "--ltn__heading-font",
+  variable: "--font-family-heading",
 });
 
 export const metadata = {
@@ -30,10 +30,10 @@ export default function RootLayout({ children }) {
     <html
       lang="tr"
       suppressHydrationWarning={true}
-      className={`${rajdhani.variable} ${open_sans.variable}`}
+      className={`${poppins.variable} ${inter.variable}`}
     >
       <body
-        className={open_sans.className}
+        className={inter.className}
         suppressHydrationWarning={true}
       >
         <Suspense fallback={<div></div>}>

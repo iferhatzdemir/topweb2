@@ -1,0 +1,114 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-sm) var(--space-xl);
+  background-color: var(--surface-navbar);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex: 1;
+  min-width: 0;
+}
+
+.logo {
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.menu ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  display: flex;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.active {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background-color: var(--surface-card);
+  cursor: pointer;
+  transition: background-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  background-color: var(--color-primary-50);
+  box-shadow: var(--shadow-sm);
+}
+
+.themeToggle {
+  font-size: 1.25rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .menu ul {
+    gap: var(--space-sm);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .right {
+    justify-content: space-between;
+  }
+}

@@ -1,20 +1,34 @@
 import Link from "next/link";
-import React from "react";
+import { Button } from "@/components/ui";
 
-const ButtonPrimary = ({ text, path, type }) => {
-  const actualType = type ? { type } : {};
+const ButtonPrimary = ({
+  text,
+  path,
+  type = "button",
+  variant = "primary",
+  tone = "solid",
+  size = "md",
+  ...rest
+}) => {
+  if (path) {
+    return (
+      <Button
+        as={Link}
+        href={path}
+        variant={variant}
+        tone={tone}
+        size={size}
+        {...rest}
+      >
+        {text}
+      </Button>
+    );
+  }
+
   return (
-    <>
-      {path ? (
-        <Link href={path} className="theme-btn-1 btn btn-effect-1">
-          {text}
-        </Link>
-      ) : (
-        <button {...actualType} className="theme-btn-1 btn btn-effect-1">
-          {text}
-        </button>
-      )}
-    </>
+    <Button type={type} variant={variant} tone={tone} size={size} {...rest}>
+      {text}
+    </Button>
   );
 };
 
